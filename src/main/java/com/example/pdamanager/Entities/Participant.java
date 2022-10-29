@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Participant extends User implements Serializable {
@@ -18,7 +17,7 @@ public class Participant extends User implements Serializable {
 
      public  Participant(){}
 
-    public Participant(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, Set<Role> roles, String domaine, String structure, Genre genre, List<Participation> participationList) {
+    public Participant(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles, String domaine, String structure, Genre genre, List<Participation> participationList) {
         super(id, nom, prenom, email, phone, password, adresse, roles);
         Domaine = domaine;
         Structure = structure;

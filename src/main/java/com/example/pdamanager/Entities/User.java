@@ -2,13 +2,15 @@ package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class User {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
     private String nom;
     private String prenom;
@@ -20,14 +22,13 @@ public class User {
     private Adresse adresse;
 
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "users")
-    @JoinColumn(name = "role_id")
-    private Set<Role> roles = new HashSet<>();
+    private List<Role> roles = new ArrayList<>();
 
 
     public User() {
     }
 
-    public User(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, Set<Role> roles) {
+    public User(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -38,11 +39,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
