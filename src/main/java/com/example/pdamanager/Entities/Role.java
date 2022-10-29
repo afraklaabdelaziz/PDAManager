@@ -2,19 +2,18 @@ package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Role {
+public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
     @ManyToMany
-    @JoinTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "role_id"),
-    inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "user_role")
     private Set<User> users = new HashSet<>();
 
     public Role() {

@@ -18,9 +18,6 @@ public class Activité implements Serializable {
     private Date date_de_participation;
     private Date date_fin_participation;
 
-    @ManyToMany
-    @JoinTable(name = "Activité_Exercice")
-    private List<Exercice> exerciceList=new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ResponsableId",referencedColumnName = "id")
     private Responsable responsable;
@@ -34,7 +31,6 @@ public class Activité implements Serializable {
         this.date_fin = date_fin;
         this.date_de_participation = date_de_participation;
         this.date_fin_participation = date_fin_participation;
-        this.exerciceList = exerciceList;
         this.responsable = responsable;
     }
 
@@ -94,11 +90,4 @@ public class Activité implements Serializable {
         this.responsable = responsable;
     }
 
-    public List<Exercice> getExerciceList() {
-        return exerciceList;
-    }
-
-    public void setExerciceList(List<Exercice> exerciceList) {
-        this.exerciceList = exerciceList;
-    }
 }

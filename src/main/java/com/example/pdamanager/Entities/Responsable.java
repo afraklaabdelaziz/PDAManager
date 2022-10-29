@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 @Entity
 public class Responsable extends User implements Serializable {
@@ -16,7 +17,7 @@ public class Responsable extends User implements Serializable {
 
     }
 
-    public Responsable(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, Set<Role> roles, String domaine, Type type) {
+    public Responsable(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles, String domaine, Type type) {
         super(id, nom, prenom, email, phone, password, adresse, roles);
         Domaine = domaine;
         this.type = type;
