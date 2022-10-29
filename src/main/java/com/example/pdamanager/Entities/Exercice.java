@@ -13,8 +13,11 @@ public class Exercice implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date Année;
+    @Temporal(TemporalType.DATE)
     private  Date Date_debut;
+    @Temporal(TemporalType.DATE)
     private  Date Date_fin;
+    @Enumerated(EnumType.STRING)
     private  EtatExercice etatExercice;
 
     @ManyToMany

@@ -1,7 +1,7 @@
 package com.example.pdamanager.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +9,9 @@ import java.util.Set;
 @Entity
 public class Responsable extends User implements Serializable {
     private String Domaine;
+    @Enumerated(EnumType.STRING)
     private Type type;
+
     @OneToOne(mappedBy = "responsable")
     private Activité activité;
 
