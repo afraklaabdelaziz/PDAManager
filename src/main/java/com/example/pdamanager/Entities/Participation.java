@@ -1,7 +1,6 @@
 package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import java.io.Serializable;
 

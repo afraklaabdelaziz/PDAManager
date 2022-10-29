@@ -1,7 +1,6 @@
 package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
 import java.util.List;
