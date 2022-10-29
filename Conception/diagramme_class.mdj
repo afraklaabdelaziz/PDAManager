@@ -920,23 +920,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGEFJXLTb9NnXU=",
-											"_parent": {
-												"$ref": "AAAAAAGEE45GgNEvJ0E="
-											},
-											"model": {
-												"$ref": "AAAAAAGEFJXLO79K6Ew="
-											},
-											"font": "Arial;13;0",
-											"left": 653,
-											"top": 505,
-											"width": 193.34326171875,
-											"height": 13,
-											"text": "+Type: Type",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGEFMd9qiMnH5g=",
 											"_parent": {
 												"$ref": "AAAAAAGEE45GgNEvJ0E="
@@ -946,7 +929,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 653,
-											"top": 520,
+											"top": 505,
 											"width": 193.34326171875,
 											"height": 13,
 											"text": "+date debut de participation: date",
@@ -963,7 +946,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 653,
-											"top": 535,
+											"top": 520,
 											"width": 193.34326171875,
 											"height": 13,
 											"text": "+date fin prticipation: date",
@@ -974,7 +957,7 @@
 									"left": 648,
 									"top": 425,
 									"width": 203.34326171875,
-									"height": 128
+									"height": 113
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -987,7 +970,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 648,
-									"top": 553,
+									"top": 538,
 									"width": 203.34326171875,
 									"height": 10
 								},
@@ -2395,7 +2378,7 @@
 										"$ref": "AAAAAAGEE5+KxgfXMwA="
 									},
 									"edgePosition": 2,
-									"text": "1..*"
+									"text": "1"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2456,7 +2439,7 @@
 									"hostEdge": {
 										"$ref": "AAAAAAGEE5+KxgfXMwA="
 									},
-									"text": "1..*"
+									"text": "1"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -8519,7 +8502,7 @@
 								"reference": {
 									"$ref": "AAAAAAGEE45Gf9EnC9U="
 								},
-								"multiplicity": "1..*"
+								"multiplicity": "1"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -8530,7 +8513,7 @@
 								"reference": {
 									"$ref": "AAAAAAGEE4zZItCt5dg="
 								},
-								"multiplicity": "1..*"
+								"multiplicity": "1"
 							}
 						},
 						{
@@ -8755,17 +8738,6 @@
 							"visibility": "private",
 							"type": {
 								"$ref": "AAAAAAGEE4zZItCt5dg="
-							}
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGEFJXLO79K6Ew=",
-							"_parent": {
-								"$ref": "AAAAAAGEE45Gf9EnC9U="
-							},
-							"name": "Type",
-							"type": {
-								"$ref": "AAAAAAGEFI0gK+q4gj8="
 							}
 						},
 						{

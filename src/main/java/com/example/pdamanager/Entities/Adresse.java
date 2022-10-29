@@ -1,7 +1,7 @@
 package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
-import org.graalvm.compiler.lir.alloc.lsra.LinearScan;
+
 
 import java.util.ArrayList;
 import java.util.List;
