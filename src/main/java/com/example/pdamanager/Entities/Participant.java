@@ -3,6 +3,7 @@ package com.example.pdamanager.Entities;
 import jakarta.persistence.*;
 
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class Participant extends User implements Serializable {
     private String Domaine;
     private String Structure;
+    @Enumerated(EnumType.STRING)
     private  Genre genre;
     @OneToMany(mappedBy = "participant")
     private List<Participation> participationList= new ArrayList<>();
