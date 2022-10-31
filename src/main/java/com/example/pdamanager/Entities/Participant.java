@@ -1,14 +1,12 @@
 package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
-
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id_user")
 public class Participant extends User implements Serializable {
     private String Domaine;
     private String Structure;
