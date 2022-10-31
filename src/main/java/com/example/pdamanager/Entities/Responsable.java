@@ -5,9 +5,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 @Entity
-@PrimaryKeyJoinColumn(name = "id_user")
+@PrimaryKeyJoinColumn(name = "id")
 public class Responsable extends User implements Serializable {
     private String Domaine;
     @Enumerated(EnumType.STRING)
