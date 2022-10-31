@@ -12,7 +12,8 @@ import java.util.List;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id_user")
+    private Long id;
     private String nom;
     private String prenom;
     private String email;
