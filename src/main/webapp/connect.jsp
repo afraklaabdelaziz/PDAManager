@@ -14,5 +14,12 @@
 <h1>jkdsgjh</h1>
 
 <h1>Bien venu : ${sessionScope.name} ${sessionScope.prenom}</h1>
+
+<ul>
+    <li>Nom : ${user.nom}</li>
+    <li>Prenom : ${user.prenom}</li>
+    <li>Email : ${user.email}</li>
+    <li>Phone : ${user.phone}</li>
+</ul>
 </body>
 </html>

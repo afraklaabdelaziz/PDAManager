@@ -65,6 +65,7 @@ public class AuthServlet extends HttpServlet {
                 if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)){
                     session.setAttribute("name",findEmail.getNom());
                     session.setAttribute("prenom",findEmail.getPrenom());
+                    request.setAttribute("user",findEmail);
                     request.getRequestDispatcher("connect.jsp").forward(request,response);
                 }
                 break;
