@@ -25,7 +25,7 @@ public class Main {
 //             entityManager.getTransaction().rollback();
 //         }
             entityManager.getTransaction().begin();
-        entityManager.createQuery("select r from Responsable r where r.email = 'afraklaabdelaziz@gmail.com'",Responsable.class).getResultList().stream().map(u->u.getNom()).forEach(System.out::println);
-         entityManager.getTransaction().commit();
+            entityManager.createQuery("select r from Responsable r where r.email = 'afraklaabdelaziz@gmail.com'",Responsable.class).getResultList().stream().map(u->u.getNom()).forEach(System.out::println);
+            entityManager.getTransaction().commit();
     }
 }

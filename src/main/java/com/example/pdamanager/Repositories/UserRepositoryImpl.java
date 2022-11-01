@@ -1,11 +1,20 @@
 package com.example.pdamanager.Repositories;
 
 import com.example.pdamanager.Entities.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 public class UserRepositoryImpl implements InterfaceRepository<User> {
-
+EntityManager entityManager ;
     @Override
     public User findByEmail(String email) {
-        return null;
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query =entityManager.createQuery("select u from User u where u.email = :email");
+        query.setParameter("email",email);
+        return (User) query.getResultList();
     }
 }

@@ -2,6 +2,7 @@ package com.example.pdamanager.Servlets;
 
 import com.example.pdamanager.Entities.Participant;
 import com.example.pdamanager.Entities.Responsable;
+import com.example.pdamanager.Entities.User;
 import com.example.pdamanager.Services.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -11,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register"})
 public class AuthServlet extends HttpServlet {
+
     UserServiceImpl userService=new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,6 +56,16 @@ public class AuthServlet extends HttpServlet {
                     participant.setPassword(Password);
                     userService.AddUser(participant);
                 }
+            case ("/login"):
+
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                User  findEmail = (User) userService.findUserByEmail(email);
+
+                if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)){
+                    request.getRequestDispatcher("connect.jsp").forward(request,response);
+                }
+                break;
         }
     }
 }
