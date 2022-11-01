@@ -1,6 +1,6 @@
 package com.example.pdamanager.Servlets;
 
-import com.example.pdamanager.Services.UserServeceImpl;
+import com.example.pdamanager.Services.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @WebServlet(name = "AuthServlet", urlPatterns = {"/login","/register"})
 public class AuthServlet extends HttpServlet {
-    UserServeceImpl userServece = new UserServeceImpl();
+    UserServiceImpl userServece = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
