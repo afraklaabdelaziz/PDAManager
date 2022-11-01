@@ -1,7 +1,13 @@
 package com.example.pdamanager.Servlets;
 
+
 import com.example.pdamanager.Entities.*;
 import com.example.pdamanager.Services.AdresseServiceImpl;
+
+import com.example.pdamanager.Entities.Participant;
+import com.example.pdamanager.Entities.Responsable;
+import com.example.pdamanager.Entities.User;
+
 import com.example.pdamanager.Services.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -11,6 +17,7 @@ import java.io.IOException;
 
 @WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register"})
 public class AuthServlet extends HttpServlet {
+
     UserServiceImpl userService=new UserServiceImpl();
     AdresseServiceImpl adresseService=new AdresseServiceImpl();
 
@@ -88,6 +95,20 @@ public class AuthServlet extends HttpServlet {
                 String Action=request.getParameter("choose");
                 if(Action.equals("1")){
 
+                }
+                break;
+
+
+            case ("/login"):
+
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                User  findEmail = (User) userService.findUserByEmail(email);
+                HttpSession session = request.getSession();
+                if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)){
+                    session.setAttribute("name",findEmail.getNom());
+                    session.setAttribute("prenom",findEmail.getPrenom());
+                    request.getRequestDispatcher("connect.jsp").forward(request,response);
                 }
                 break;
 

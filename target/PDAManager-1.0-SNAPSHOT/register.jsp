@@ -16,29 +16,32 @@
             crossorigin="anonymous"
     />
     <title>Register</title>
-    <form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
-        <div class="mb-3">
-            <label class="form-label">Nom</label>
-            <input type="text" class="form-control" name="nom" >
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Prenom</label>
-            <input type="text" class="form-control" name="prenom" >
-        </div>
-        <div class="mb-3">
-            <label  class="form-label">Email address</label>
-            <input type="email" class="form-control" name="email" >
-        </div>
-        <div class="mb-3">
-            <label class="form-label"> N Telephone</label>
-            <input type="text" class="form-control" name="phone" >
-        </div>
-        <div class="mb-3">
-            <label >Saisir votre role:</label>
+</head>
+<body>
+<form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
+    <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" class="form-control" name="nom" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Prenom</label>
+        <input type="text" class="form-control" name="prenom" >
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Email address</label>
+        <input type="email" class="form-control" name="email" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label"> N Telephone</label>
+        <input type="text" class="form-control" name="phone" >
+    </div>
+    <div class="mb-3">
+        <label >Saisir votre role:</label>
         <select name="choix" >
             <option value="1">Responsable</option>
             <option value="2">Participant</option>
         </select>
+<<<<<<< HEAD
         </div>
         <div class="mb-3">
             <label class="form-label">Pays</label>
@@ -65,5 +68,14 @@
 </head>
 <body>
 
+=======
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+>>>>>>> main
 </body>
 </html>
