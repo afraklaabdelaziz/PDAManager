@@ -12,8 +12,8 @@ public class UserRepositoryImpl implements InterfaceRepository<User> {
     public User findByEmail(String email) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("select user from User user where user.email = :x");
+        Query query = entityManager.createQuery("select u from User u where u.email =:x");
         query.setParameter("x",email);
-        return (User) query.getResultList();
+        return (User) query.getResultList().stream().findFirst().get();
     }
 }
