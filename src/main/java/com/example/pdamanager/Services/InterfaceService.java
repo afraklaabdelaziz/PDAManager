@@ -1,4 +1,5 @@
 package com.example.pdamanager.Services;
 
-public interface InterfaceService {
+public interface InterfaceService <T> {
+    public void AddUser(T t);
 }
