@@ -15,6 +15,6 @@ EntityManager entityManager ;
         entityManager.getTransaction().begin();
         Query query =entityManager.createQuery("select u from User u where u.email = :email");
         query.setParameter("email",email);
-        return (User) query.getSingleResult();
+        return (User) query.getResultList();
     }
 }
