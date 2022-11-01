@@ -1,8 +1,13 @@
 package com.example.pdamanager.Servlets;
 
+
+import com.example.pdamanager.Entities.*;
+import com.example.pdamanager.Services.AdresseServiceImpl;
+
 import com.example.pdamanager.Entities.Participant;
 import com.example.pdamanager.Entities.Responsable;
 import com.example.pdamanager.Entities.User;
+
 import com.example.pdamanager.Services.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -14,6 +19,8 @@ import java.io.IOException;
 public class AuthServlet extends HttpServlet {
 
     UserServiceImpl userService=new UserServiceImpl();
+    AdresseServiceImpl adresseService=new AdresseServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path=request.getServletPath();
@@ -38,7 +45,13 @@ public class AuthServlet extends HttpServlet {
                 String Email=request.getParameter("email");
                 String Phone=request.getParameter("phone");
                 String Password=request.getParameter("password");
-                System.out.println(role);
+                String pays=request.getParameter("pays");
+                String Ville=request.getParameter("ville");
+                String adresse=request.getParameter("adresse");
+                String code=request.getParameter("code");
+                Adresse addres=new Adresse();
+                Pays payss=new Pays();
+                Ville ville=new Ville();
                 if(role.equals("1")){
                     Responsable responsable=new Responsable();
                     responsable.setNom(Nom);
@@ -46,7 +59,18 @@ public class AuthServlet extends HttpServlet {
                     responsable.setEmail(Email);
                     responsable.setPhone(Phone);
                     responsable.setPassword(Password);
-                    userService.AddUser(responsable);
+                    userService.Add(responsable);
+                    addres.setAdresse(adresse);
+                    payss.setNom(pays);
+                    ville.setNom(Ville);
+                    ville.setPays(payss);
+                    addres.setVille(ville);
+                    addres.setCodePostal(code);
+                    adresseService.AddPays(payss);
+                    adresseService.AddVille(ville);
+                    adresseService.Add(addres);
+
+
                 }else if (role.equals("2")){
                     Participant participant=new Participant();
                     participant.setNom(Nom);
@@ -54,8 +78,27 @@ public class AuthServlet extends HttpServlet {
                     participant.setEmail(Email);
                     participant.setPhone(Phone);
                     participant.setPassword(Password);
-                    userService.AddUser(participant);
+                    userService.Add(participant);
+                    addres.setAdresse(adresse);
+                    payss.setNom(pays);
+                    payss.setNom(pays);
+                    ville.setNom(Ville);
+                    ville.setPays(payss);
+                    addres.setVille(ville);
+                    addres.setCodePostal(code);
+                    adresseService.AddPays(payss);
+                    adresseService.AddVille(ville);
+                    adresseService.Add(addres);
                 }
+                break;
+            case("/AddEditt"):
+                String Action=request.getParameter("choose");
+                if(Action.equals("1")){
+
+                }
+                break;
+
+
             case ("/login"):
 
                 String email = request.getParameter("email");
@@ -68,6 +111,7 @@ public class AuthServlet extends HttpServlet {
                     request.getRequestDispatcher("connect.jsp").forward(request,response);
                 }
                 break;
+
         }
     }
 }

@@ -43,6 +43,23 @@
         </select>
     </div>
     <div class="mb-3">
+        <label class="form-label">Pays</label>
+        <input type="text" class="form-control" name="pays" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ville</label>
+        <input type="text" class="form-control" name="ville" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Adresse</label>
+        <input type="text" class="form-control" name="adresse" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Code Postal</label>
+        <input type="text" class="form-control" name="code" >
+    </div>
+    <div class="mb-3">
+
         <label  class="form-label">Password</label>
         <input type="password" class="form-control" name="password">
     </div>

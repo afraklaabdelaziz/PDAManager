@@ -9,8 +9,13 @@ public class UserServiceImpl <T> implements InterfaceService<T> {
     UserRepositoryImpl userRepository = new UserRepositoryImpl();
 
     @Override
-    public void AddUser( T t) {
-        userDao.addUSer(t);
+    public void Add( T t) {
+        userDao.add(t);
+    }
+
+    @Override
+    public void update(T t) {
+        userDao.update(t);
     }
 
     @Override

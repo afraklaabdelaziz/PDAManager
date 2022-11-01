@@ -1,6 +1,7 @@
 package com.example.pdamanager.Dao;
 import java.util.List;
 
+import com.example.pdamanager.Entities.User;
 import jakarta.persistence.*;
 
 
@@ -8,16 +9,13 @@ import jakarta.persistence.*;
 public class UseDaoImpl<T>  implements InterfaceDao <T> {
    private EntityManager em;
     @Override
-    public void addUSer(T t) {
+    public void add(T t) {
          EntityManagerFactory Entity=Persistence.createEntityManagerFactory("PDAManager");
-        System.out.println("1");
           em=Entity.createEntityManager();
-        System.out.println("2");
           em.getTransaction().begin();
         try{
           em.persist(t);
           em.getTransaction().commit();
-            System.out.println("3");
         }
     catch (Exception ex){
 
@@ -31,17 +29,43 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
     }
 
     @Override
-    public List listUsers() {
+    public List list() {
         return null;
     }
 
     @Override
-    public void updateUser(T o) {
+    public void update(T t) {
 
+        em.getTransaction().begin();
+        try{
+            em.merge(t);
+            em.getTransaction().commit();
+        }
+        catch (Exception ex){
+
+            em.getTransaction().rollback();
+
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
     }
-
     @Override
-    public T findUser(Long id) {
-        return null;
+    public T find(Long id) {
+        em.getTransaction().begin();
+        User user = new User();
+        try {
+           user= em.find(User.class, id);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+
+            em.getTransaction().rollback();
+
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return (T) user;
     }
-}
+    }
