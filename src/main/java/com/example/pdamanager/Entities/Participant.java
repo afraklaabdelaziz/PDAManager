@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_user")
+@PrimaryKeyJoinColumn(name = "id")
 public class Participant extends User implements Serializable {
     private String Domaine;
     private String Structure;
