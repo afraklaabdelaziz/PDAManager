@@ -7,7 +7,12 @@ public class UserServiceImpl <T> implements InterfaceService<T> {
     UseDaoImpl userDao=new UseDaoImpl();
 
     @Override
-    public void AddUser( T t) {
-        userDao.addUSer(t);
+    public void Add( T t) {
+        userDao.add(t);
+    }
+
+    @Override
+    public void update(T t) {
+        userDao.update(t);
     }
 }
