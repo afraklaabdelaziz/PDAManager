@@ -6,11 +6,19 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "AuthServlet", value = "/AuthServlet")
+@WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register"})
 public class AuthServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String path=request.getServletPath();
+        switch (path){
+            case("register"):
+                request.getRequestDispatcher("register.jsp").forward(request,response);
+                break;
+            case("login"):
+                request.getRequestDispatcher("login.jsp").forward(request,response);
+                break;
+        }
     }
 
     @Override
