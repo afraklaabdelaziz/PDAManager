@@ -4,6 +4,8 @@ import com.example.pdamanager.Dao.AdresseDaoImpl;
 import com.example.pdamanager.Dao.UseDaoImpl;
 import com.example.pdamanager.Entities.Adresse;
 
+import java.util.List;
+
 public class AdresseServiceImpl<T> implements InterfaceService <T> {
     AdresseDaoImpl AdresseDao=new AdresseDaoImpl();
     @Override
@@ -12,7 +14,18 @@ public class AdresseServiceImpl<T> implements InterfaceService <T> {
 
                 AdresseDao.add(t);
         }
-        public void AddVille(T t){
+
+    @Override
+    public void update(T t) {
+
+    }
+
+    @Override
+    public List<T> getAll() {
+        return null;
+    }
+
+    public void AddVille(T t){
         AdresseDao.addVille(t);
         }
         public void AddPays(T t){

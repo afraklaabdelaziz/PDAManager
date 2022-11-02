@@ -4,6 +4,8 @@ import com.example.pdamanager.Dao.UseDaoImpl;
 import com.example.pdamanager.Entities.User;
 import com.example.pdamanager.Repositories.UserRepositoryImpl;
 
+import java.util.List;
+
 public class UserServiceImpl <T> implements InterfaceService<T> {
     UseDaoImpl userDao=new UseDaoImpl();
     UserRepositoryImpl userRepository = new UserRepositoryImpl();
@@ -18,9 +20,16 @@ public class UserServiceImpl <T> implements InterfaceService<T> {
         userDao.update(t);
     }
 
-    @Override
+
+
+
     public T findUserByEmail(String email) {
         return (T) userRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<T> getAll() {
+        return userDao.getAll();
     }
 
 }
