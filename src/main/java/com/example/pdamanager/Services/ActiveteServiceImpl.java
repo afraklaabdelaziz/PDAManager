@@ -20,7 +20,7 @@ public class ActiveteServiceImpl implements InterfaceService<Activité>{
 
     @Override
     public List<Activité> getAll() {
-        return null;
+        return activeteDao.getAll();
     }
 
 }

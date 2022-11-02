@@ -1,31 +1,27 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-            crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <title>Title</title>
 </head>
 <body>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActivete">add</button>
 <p class="h4">List Produits</p>
-<div class="d-flex ms-5 ps-5 flex-wrap gap-5">
-    <div class="produitList position-relative col-8 col-md-4 col-lg-3">
-        <i class="fas fa-ellipsis-h position-absolute top-0 end-0 m-2 ellipsis"></i>
-        <div class="d-none action">
-            <a href=""><i class="fas fa-edit"></i> <span>Edite</span></a>
-            <a href=""><i class="fas fa-trash"></i> <span>Supprimer</span></a>
-        </div>
-        <img class="imgProduit" src="" alt="sdkjgjhgdjh">
-        <p class="h5 m-2">Type activité : </p>
-        <p class="h5 m-2">Date : </p>
-    </div>
 
+<c:forEach items="${activetes}" var="activete">
+
+<div class="d-flex flex-row ms-5 ps-5 flex-wrap gap-5">
+    <div>
+        <img  src="" alt="sdkjgjhgdjh">
+        <p class="h5 m-2">Type activité : ${activete.getId()} </p>
+        <p class="h5 m-2">Date : ${activete.getDate_debut()}</p>
+    </div>
 </div>
+</c:forEach>
+
 
 <div class="modal fade" id="addActivete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -37,7 +33,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
+                <form method="post" name="FormRegister" action="addActivete"  class="flex justify-content-center ms-5 me-5 w-75">
                     <div class="mb-3">
                         <label class="form-label">date debut</label>
                         <input type="date" class="form-control" name="dateDebut" >

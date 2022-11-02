@@ -35,6 +35,7 @@
           <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:3.0.0" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.5.0" />
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
