@@ -65,7 +65,7 @@ public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
         }
     }
     @Override
-    public List<T> list() {
+    public List<T> getAll() {
         return null;
     }
 
@@ -75,7 +75,7 @@ public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
     }
 
     @Override
-    public T find(Long id) {
+    public T findById(Long id) {
         return null;
     }
 }

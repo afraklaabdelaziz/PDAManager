@@ -5,7 +5,8 @@ import java.util.List;
 
 public interface InterfaceDao<T> {
     public void add(T t);
-    public List<T> list();
+    public List<T> getAll();
     public void update(T t);
-    public T find(Long id);
+    public T findById(Long id);
+
 }
