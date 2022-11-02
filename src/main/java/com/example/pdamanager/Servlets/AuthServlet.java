@@ -98,6 +98,7 @@ public class AuthServlet extends HttpServlet {
                     session.setAttribute("name", findEmail.getNom());
                     session.setAttribute("prenom", findEmail.getPrenom());
                     request.setAttribute("user", findEmail);
+
                     request.getRequestDispatcher("connect.jsp").forward(request, response);
                 }else{
                     session.setAttribute("error","mot de passe ou email incorrect");

@@ -1,6 +1,7 @@
 package com.example.pdamanager.Entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,13 +15,13 @@ public class Activité implements Serializable {
     private Long id;
     private String Description;
     @Temporal(TemporalType.DATE)
-    private Date Date_debut;
+    private LocalDate Date_debut;
     @Temporal(TemporalType.DATE)
-    private Date date_fin;
+    private LocalDate date_fin;
     @Temporal(TemporalType.DATE)
-    private Date date_de_participation;
+    private LocalDate date_de_participation;
     @Temporal(TemporalType.DATE)
-    private Date date_fin_participation;
+    private LocalDate date_fin_participation;
 
     @Enumerated(EnumType.STRING)
     private Etat etatActivité;
@@ -33,7 +34,7 @@ public class Activité implements Serializable {
 
     public  Activité(){}
 
-    public Activité(Long id, String description, Date date_debut, Date date_fin, Date date_de_participation, Date date_fin_participation, Etat etatActivité, TypeActivité typeActivité, Responsable responsable) {
+    public Activité(Long id, String description, LocalDate date_debut, LocalDate date_fin, LocalDate date_de_participation, LocalDate date_fin_participation, Etat etatActivité, TypeActivité typeActivité, Responsable responsable) {
         this.id = id;
         Description = description;
         Date_debut = date_debut;
@@ -61,35 +62,35 @@ public class Activité implements Serializable {
         Description = description;
     }
 
-    public Date getDate_debut() {
+    public LocalDate getDate_debut() {
         return Date_debut;
     }
 
-    public void setDate_debut(Date date_debut) {
+    public void setDate_debut(LocalDate date_debut) {
         Date_debut = date_debut;
     }
 
-    public Date getDate_fin() {
+    public LocalDate getDate_fin() {
         return date_fin;
     }
 
-    public void setDate_fin(Date date_fin) {
+    public void setDate_fin(LocalDate date_fin) {
         this.date_fin = date_fin;
     }
 
-    public Date getDate_de_participation() {
+    public LocalDate getDate_de_participation() {
         return date_de_participation;
     }
 
-    public void setDate_de_participation(Date date_de_participation) {
+    public void setDate_de_participation(LocalDate date_de_participation) {
         this.date_de_participation = date_de_participation;
     }
 
-    public Date getDate_fin_participation() {
+    public LocalDate getDate_fin_participation() {
         return date_fin_participation;
     }
 
-    public void setDate_fin_participation(Date date_fin_participation) {
+    public void setDate_fin_participation(LocalDate date_fin_participation) {
         this.date_fin_participation = date_fin_participation;
     }
 
