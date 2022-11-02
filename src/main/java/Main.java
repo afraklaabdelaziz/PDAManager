@@ -6,15 +6,16 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
+import java.time.LocalDate;
 
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory test = Persistence.createEntityManagerFactory("PDAManager");
+        /*EntityManagerFactory test = Persistence.createEntityManagerFactory("PDAManager");
         EntityManager entityManager = test.createEntityManager();
 
         UseDaoImpl user=new UseDaoImpl();
-        user.getAll();
+        user.getAll();*/
 
 //        Responsable responsable = new Responsable();
 //        responsable.setNom("afrakla");
@@ -33,6 +34,9 @@ public class Main {
 //            entityManagerityManager.getTransaction().begin();
 //            entityManager.createQuery("select r from Responsable r where r.email = 'afraklaabdelaziz@gmail.com'",Responsable.class).getResultList().stream().map(u->u.getNom()).forEach(System.out::println);
 //            entityManager.getTransaction().commit();
+        String dateFromPar="2022-11-02T16:40";
+        System.out.println("date from parametre "+dateFromPar);
+        LocalDate dateDInsc = LocalDate.parse(dateFromPar);
 
     }
 }

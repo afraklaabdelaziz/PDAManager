@@ -34,8 +34,8 @@ public class ActiveteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-       LocalDate dateDInsc = LocalDate.parse(request.getParameter("dateDI"));
+        String dateFromPar=request.getParameter("dateDI");
+       LocalDate dateDInsc = LocalDate.parse(dateFromPar);
        LocalDate dateFInsc = LocalDate.parse(request.getParameter("dateFI"));
        LocalDate dateDebut = LocalDate.parse(request.getParameter("dateDebut"));
        LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"));
