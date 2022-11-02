@@ -66,9 +66,10 @@ public class AuthServlet extends HttpServlet {
                     ville.setPays(payss);
                     addres.setVille(ville);
                     addres.setCodePostal(code);
-                    adresseService.AddPays(payss);
-                    adresseService.AddVille(ville);
+                    adresseService.Add(payss);
+                    adresseService.Add(ville);
                     adresseService.Add(addres);
+                    response.sendRedirect("/login");
                 }else if (role.equals("2")){
                     Participant participant=new Participant();
                     participant.setNom(Nom);
@@ -84,9 +85,10 @@ public class AuthServlet extends HttpServlet {
                     ville.setPays(payss);
                     addres.setVille(ville);
                     addres.setCodePostal(code);
-                    adresseService.AddPays(payss);
-                    adresseService.AddVille(ville);
+                    adresseService.Add(payss);
+                    adresseService.Add(ville);
                     adresseService.Add(addres);
+                    response.sendRedirect("/login");
                 }
                 break;
             case ("/login"):

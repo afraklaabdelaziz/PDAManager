@@ -3,6 +3,7 @@ package com.example.pdamanager.Entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,11 +13,11 @@ public class Exercice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date Année;
-    @Temporal(TemporalType.DATE)
-    private  Date Date_debut;
-    @Temporal(TemporalType.DATE)
-    private  Date Date_fin;
+    private LocalDate Année;
+
+    private  LocalDate Date_debut;
+
+    private  LocalDate Date_fin;
     @Enumerated(EnumType.STRING)
     private  EtatExercice etatExercice;
 
@@ -24,7 +25,7 @@ public class Exercice implements Serializable {
     private List<Activité> activitéList= new ArrayList<>();
     public Exercice(){}
 
-    public Exercice(Long id, Date année, Date date_debut, Date date_fin, EtatExercice etatExercice, List<Activité> activitéList) {
+    public Exercice(Long id, LocalDate année, LocalDate date_debut, LocalDate date_fin, EtatExercice etatExercice, List<Activité> activitéList) {
         this.id = id;
         Année = année;
         Date_debut = date_debut;
@@ -41,27 +42,27 @@ public class Exercice implements Serializable {
         this.id = id;
     }
 
-    public Date getAnnée() {
+    public LocalDate getAnnée() {
         return Année;
     }
 
-    public void setAnnée(Date année) {
+    public void setAnnée(LocalDate année) {
         Année = année;
     }
 
-    public Date getDate_debut() {
+    public LocalDate getDate_debut() {
         return Date_debut;
     }
 
-    public void setDate_debut(Date date_debut) {
+    public void setDate_debut(LocalDate date_debut) {
         Date_debut = date_debut;
     }
 
-    public Date getDate_fin() {
+    public LocalDate getDate_fin() {
         return Date_fin;
     }
 
-    public void setDate_fin(Date date_fin) {
+    public void setDate_fin(LocalDate date_fin) {
         Date_fin = date_fin;
     }
 

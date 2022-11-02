@@ -30,10 +30,6 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
         }
     }
 
-    @Override
-    public List list() {
-        return null;
-    }
 
     @Override
     public void update(T t) {
@@ -54,7 +50,7 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
         }
     }
     @Override
-    public T find(Long id) {
+    public T findById(Long id) {
         em.getTransaction().begin();
         User user = new User();
         try {
@@ -70,14 +66,14 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
         }
         return (T) user;
     }
-
-    public List<User> getAll(){
+@Override
+    public List<T> getAll(){
         em.getTransaction().begin();
         List<User>  users = em.createQuery("select user from User user",User.class).getResultList();//.stream().map(u->u.getNom()).forEach(System.out::println);
         users.stream().map(u->u.getNom()).forEach(System.out::println);
 
         em.getTransaction().commit();
-        return users;
+        return (List<T>) users;
 
     }
 
