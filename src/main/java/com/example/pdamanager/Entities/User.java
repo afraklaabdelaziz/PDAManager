@@ -16,7 +16,9 @@ public class User implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String phone;
     private String password;
     @ManyToOne
