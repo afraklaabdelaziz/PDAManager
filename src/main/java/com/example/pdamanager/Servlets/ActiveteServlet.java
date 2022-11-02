@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 @WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/addActivete"})
 public class ActiveteServlet extends HttpServlet {
@@ -21,12 +22,15 @@ public class ActiveteServlet extends HttpServlet {
     String path = request.getServletPath();
     switch (path){
         case ("/listActivetes"):
+
             request.getRequestDispatcher("listActivetes.jsp").forward(request,response);
             break;
         case ("/updateActivete"):
             request.getRequestDispatcher("updateActivete.jsp").forward(request,response);
             break;
         case ("/addActivete") :
+            List<Activité> activites = activeteService.getAll();
+            request.setAttribute("activetes",activites);
             request.getRequestDispatcher("addActivete.jsp").forward(request,response);
             break;
     }
@@ -47,7 +51,6 @@ public class ActiveteServlet extends HttpServlet {
         activité.setDate_fin_participation(dateFInsc);
         activité.setDate_fin(dateFin);
         activité.setDescription(description);
-
         activeteService.Add(activité);
 
     }

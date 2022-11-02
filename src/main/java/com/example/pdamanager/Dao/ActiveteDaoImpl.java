@@ -4,6 +4,7 @@ import com.example.pdamanager.Entities.Activité;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 import java.util.List;
 
@@ -27,7 +28,11 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
 
     @Override
     public List<Activité> getAll() {
-        return null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("select a from Activité a");
+        return query.getResultList();
     }
 
     @Override
