@@ -11,9 +11,14 @@ public class Activité implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Description;
+
+
     private LocalDate Date_debut;
+
     private LocalDate date_fin;
+
     private LocalDate date_de_participation;
+
     private LocalDate date_fin_participation;
 
     @Enumerated(EnumType.STRING)

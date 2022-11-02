@@ -1,21 +1,22 @@
 package com.example.pdamanager.Dao;
 
 import com.example.pdamanager.Entities.Activité;
+import com.example.pdamanager.Entities.Exercice;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class ActiveteDaoImpl implements InterfaceDao<Activité>{
+public class ExerciceDaoImpl implements InterfaceDao<Exercice> {
     private EntityManager entityManager;
     @Override
-    public void add(Activité activité) {
+    public void add(Exercice exercice) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         try {
-            entityManager.persist(activité);
+            entityManager.persist(exercice);
             entityManager.getTransaction().commit();
         }catch (Exception e){
             entityManager.getTransaction().rollback();
@@ -26,17 +27,17 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
     }
 
     @Override
-    public List<Activité> getAll() {
+    public List<Exercice> getAll() {
         return null;
     }
 
     @Override
-    public void update(Activité activité) {
+    public void update(Exercice exercice) {
 
     }
 
     @Override
-    public Activité findById(Long id) {
+    public Exercice findById(Long id) {
         return null;
     }
 }

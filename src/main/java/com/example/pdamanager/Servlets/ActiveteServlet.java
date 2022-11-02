@@ -1,9 +1,9 @@
 package com.example.pdamanager.Servlets;
 
 import com.example.pdamanager.Entities.Activité;
-import com.example.pdamanager.Entities.Etat;
 import com.example.pdamanager.Entities.TypeActivité;
 import com.example.pdamanager.Services.ActiveteServiceImpl;
+import com.example.pdamanager.Services.InterfaceService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,7 +13,9 @@ import java.time.LocalDate;
 
 @WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/addActivete"})
 public class ActiveteServlet extends HttpServlet {
-    ActiveteServiceImpl activeteService = new ActiveteServiceImpl();
+
+    TypeActivité typeActivité;
+    InterfaceService activeteService = new ActiveteServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();

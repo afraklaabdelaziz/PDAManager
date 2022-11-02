@@ -1,11 +1,12 @@
 package com.example.pdamanager.Services;
-
 import com.example.pdamanager.Dao.AdresseDaoImpl;
-
+import com.example.pdamanager.Dao.InterfaceDao;
+import com.example.pdamanager.Entities.Pays;
+import com.example.pdamanager.Entities.Ville;
 import java.util.List;
 
 public class AdresseServiceImpl<T> implements InterfaceService <T> {
-    AdresseDaoImpl AdresseDao=new AdresseDaoImpl();
+    InterfaceDao AdresseDao=new AdresseDaoImpl();
     @Override
     public void Add(T t) {
 
@@ -22,11 +23,13 @@ public class AdresseServiceImpl<T> implements InterfaceService <T> {
         return null;
     }
 
-    public void AddVille(T t){
-        AdresseDao.addVille(t);
+
+
+    public void Add(Ville ville){
+        AdresseDao.add(ville);
         }
-        public void AddPays(T t){
-        AdresseDao.addPays(t);
+        public void Add(Pays pays){
+        AdresseDao.add(pays);
         }
     }
 

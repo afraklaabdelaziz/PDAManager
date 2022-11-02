@@ -1,5 +1,6 @@
 package com.example.pdamanager.Servlets;
 
+import com.example.pdamanager.Services.InterfaceService;
 import com.example.pdamanager.Services.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 @WebServlet(name = "UserServlet", urlPatterns = {"/UserList","/UpdateUser"})
 public class UserServlet extends HttpServlet {
-    UserServiceImpl userService=new UserServiceImpl();
+    InterfaceService userService=new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
