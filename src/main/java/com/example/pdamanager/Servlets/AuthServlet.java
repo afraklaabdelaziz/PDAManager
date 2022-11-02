@@ -69,8 +69,6 @@ public class AuthServlet extends HttpServlet {
                     adresseService.AddPays(payss);
                     adresseService.AddVille(ville);
                     adresseService.Add(addres);
-
-
                 }else if (role.equals("2")){
                     Participant participant=new Participant();
                     participant.setNom(Nom);
@@ -91,16 +89,7 @@ public class AuthServlet extends HttpServlet {
                     adresseService.Add(addres);
                 }
                 break;
-            case("/AddEditt"):
-                String Action=request.getParameter("choose");
-                if(Action.equals("1")){
-
-                }
-                break;
-
-
             case ("/login"):
-
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 User  findEmail = (User) userService.findUserByEmail(email);
@@ -111,7 +100,6 @@ public class AuthServlet extends HttpServlet {
                     request.getRequestDispatcher("connect.jsp").forward(request,response);
                 }
                 break;
-
         }
     }
 }

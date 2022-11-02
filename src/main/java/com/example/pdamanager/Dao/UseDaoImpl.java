@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 
 
 public class UseDaoImpl<T>  implements InterfaceDao <T> {
-   private EntityManager em;
+     EntityManagerFactory Entity=Persistence.createEntityManagerFactory("PDAManager");
+     EntityManager em = Entity.createEntityManager();
+
     @Override
     public void add(T t) {
          EntityManagerFactory Entity=Persistence.createEntityManagerFactory("PDAManager");
@@ -68,4 +70,15 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
         }
         return (T) user;
     }
+
+    public List<User> getAll(){
+        em.getTransaction().begin();
+        List<User>  users = em.createQuery("select user from User user",User.class).getResultList();//.stream().map(u->u.getNom()).forEach(System.out::println);
+        users.stream().map(u->u.getNom()).forEach(System.out::println);
+
+        em.getTransaction().commit();
+        return users;
+
+    }
+
     }

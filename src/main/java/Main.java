@@ -1,14 +1,20 @@
 
+import com.example.pdamanager.Dao.UseDaoImpl;
 import com.example.pdamanager.Entities.Responsable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
+
+
 public class Main {
     public static void main(String[] args) {
         EntityManagerFactory test = Persistence.createEntityManagerFactory("PDAManager");
         EntityManager entityManager = test.createEntityManager();
+
+        UseDaoImpl user=new UseDaoImpl();
+        user.getAll();
 
 //        Responsable responsable = new Responsable();
 //        responsable.setNom("afrakla");
@@ -24,8 +30,9 @@ public class Main {
 //         }catch (Exception e){
 //             entityManager.getTransaction().rollback();
 //         }
-            entityManager.getTransaction().begin();
-            entityManager.createQuery("select r from Responsable r where r.email = 'afraklaabdelaziz@gmail.com'",Responsable.class).getResultList().stream().map(u->u.getNom()).forEach(System.out::println);
-            entityManager.getTransaction().commit();
+//            entityManagerityManager.getTransaction().begin();
+//            entityManager.createQuery("select r from Responsable r where r.email = 'afraklaabdelaziz@gmail.com'",Responsable.class).getResultList().stream().map(u->u.getNom()).forEach(System.out::println);
+//            entityManager.getTransaction().commit();
+
     }
 }
