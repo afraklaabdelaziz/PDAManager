@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/addActivete"})
+@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete"})
 public class ActiveteServlet extends HttpServlet {
 
     TypeActivité typeActivité;
@@ -21,25 +21,21 @@ public class ActiveteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
     switch (path){
-        case ("/listActivetes"):
-
-            request.getRequestDispatcher("listActivetes.jsp").forward(request,response);
-            break;
         case ("/updateActivete"):
             request.getRequestDispatcher("updateActivete.jsp").forward(request,response);
             break;
-        case ("/addActivete") :
+        case ("/listActivete") :
             List<Activité> activites = activeteService.getAll();
             request.setAttribute("activetes",activites);
-            request.getRequestDispatcher("addActivete.jsp").forward(request,response);
+            request.getRequestDispatcher("listeActivete.jsp").forward(request,response);
             break;
     }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String dateFromPar=request.getParameter("dateDI");
-       LocalDate dateDInsc = LocalDate.parse(dateFromPar);
+
+       LocalDate dateDInsc = LocalDate.parse(request.getParameter("dateDI"));
        LocalDate dateFInsc = LocalDate.parse(request.getParameter("dateFI"));
        LocalDate dateDebut = LocalDate.parse(request.getParameter("dateDebut"));
        LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"));
