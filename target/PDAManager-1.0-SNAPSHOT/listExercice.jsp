@@ -1,3 +1,5 @@
+<%@ page import="com.example.pdamanager.Entities.Exercice" %>
+<%@ page import="java.util.List" %>
 l<%--
   Created by IntelliJ IDEA.
   User: Youcode
@@ -19,7 +21,13 @@ l<%--
 <body>
 
 <ul>
-  <li>Année: ${exercice.Année}</li>
+  <% List<Exercice> exercices = (List<Exercice>) request.getAttribute("exercices"); %>
+  <% for (Exercice exercice:exercices){%>
+  <li><%=exercice.getAnnée()%></li>
+  <li><%=exercice.getDate_debut()%></li>
+  <li><%=exercice.getDate_fin()%></li>
+  <li><%=exercice.getEtatExercice()%></li>
+  <%}%>
 </ul>
 
 </body>

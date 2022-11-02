@@ -23,7 +23,7 @@ public class ExerciceServiceImpl implements InterfaceService <Exercice>{
 
     @Override
     public List<Exercice> getAll() {
-        return null;
+        return exerciceDao.getAll();
     }
 
 }
