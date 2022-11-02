@@ -6,4 +6,6 @@ public interface InterfaceService <T> {
 
     public void Add(T t);
     public void update(T t);
+    public List<T> getAll();
+
 }

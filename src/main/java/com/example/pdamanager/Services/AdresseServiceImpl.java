@@ -1,8 +1,6 @@
 package com.example.pdamanager.Services;
 
 import com.example.pdamanager.Dao.AdresseDaoImpl;
-import com.example.pdamanager.Dao.UseDaoImpl;
-import com.example.pdamanager.Entities.Adresse;
 
 import java.util.List;
 
@@ -20,8 +18,7 @@ public class AdresseServiceImpl<T> implements InterfaceService <T> {
 
     }
 
-    @Override
-    public List<T> liste() {
+    public List<T> getAll() {
         return null;
     }
 
