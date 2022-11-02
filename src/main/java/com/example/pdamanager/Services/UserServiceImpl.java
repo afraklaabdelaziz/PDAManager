@@ -1,7 +1,6 @@
 package com.example.pdamanager.Services;
 
 import com.example.pdamanager.Dao.UseDaoImpl;
-import com.example.pdamanager.Entities.User;
 import com.example.pdamanager.Repositories.UserRepositoryImpl;
 
 import java.util.List;
@@ -19,9 +18,6 @@ public class UserServiceImpl <T> implements InterfaceService<T> {
     public void update(T t) {
         userDao.update(t);
     }
-
-
-
 
     public T findUserByEmail(String email) {
         return (T) userRepository.findByEmail(email);
