@@ -1,6 +1,5 @@
 package com.example.pdamanager.Dao;
 
-import com.example.pdamanager.Entities.Adresse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -75,7 +74,9 @@ public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
     }
 
     @Override
+
     public T findById(Long id) {
+
         return null;
     }
 }

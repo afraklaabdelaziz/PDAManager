@@ -2,9 +2,6 @@ package com.example.pdamanager.Entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -14,6 +11,7 @@ public class Activité implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Description;
+
 
     private LocalDate Date_debut;
 
