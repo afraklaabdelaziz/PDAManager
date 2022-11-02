@@ -11,9 +11,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","addActivete"})
+@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/addActivete"})
 public class ActiveteServlet extends HttpServlet {
-    TypeActivité typeActivité;
     ActiveteServiceImpl activeteService = new ActiveteServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
