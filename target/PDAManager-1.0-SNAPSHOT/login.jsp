@@ -18,6 +18,7 @@
     <title>Register</title>
 </head>
 <body>
+
 <form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
     <div class="alert alert-danger" role="alert">
         ${sessionScope.error}

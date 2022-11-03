@@ -10,8 +10,9 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
-@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/addActivete"})
+@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete"})
 public class ActiveteServlet extends HttpServlet {
 
     TypeActivité typeActivité;
@@ -20,14 +21,13 @@ public class ActiveteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
     switch (path){
-        case ("/listActivetes"):
-            request.getRequestDispatcher("listActivetes.jsp").forward(request,response);
-            break;
         case ("/updateActivete"):
             request.getRequestDispatcher("updateActivete.jsp").forward(request,response);
             break;
-        case ("/addActivete") :
-            request.getRequestDispatcher("addActivete.jsp").forward(request,response);
+        case ("/listActivete") :
+            List<Activité> activites = activeteService.getAll();
+            request.setAttribute("activetes",activites);
+            request.getRequestDispatcher("listeActivete.jsp").forward(request,response);
             break;
     }
     }
@@ -47,7 +47,6 @@ public class ActiveteServlet extends HttpServlet {
         activité.setDate_fin_participation(dateFInsc);
         activité.setDate_fin(dateFin);
         activité.setDescription(description);
-
         activeteService.Add(activité);
 
     }
