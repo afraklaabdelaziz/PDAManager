@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "ExerciceServlet", urlPatterns = {"/Exercice","/addExercice","/updateExercice","/listExercice"})
 public class ExerciceServlet extends HttpServlet {
@@ -30,30 +31,32 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("addExercice.jsp").forward(request, response);
                 break;
             case ("/Exercice"):
+                System.out.println(request.getParameter("id"));
                 List<Exercice> exercices = exerciceService.getAll();
                 request.setAttribute("exercices",exercices);
                 request.getRequestDispatcher("/listExercice.jsp").forward(request,response);
                 System.out.println(exerciceService.getAll());
+
+                System.out.println(request.getAttribute("id"));
                 break;
         }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path = request.getServletPath();
+        switch (path){
+            case "/addE":
+        }
         LocalDate an=LocalDate.parse( request.getParameter("anne"));
         LocalDate debut=LocalDate.parse(request.getParameter("debut"));
         LocalDate fin=LocalDate.parse(request.getParameter("fin"));
         Exercice exercice=new Exercice();
         //EtatExercice etat= EtatExercice.valueOf(request.getParameter(""));
-        String choice=request.getParameter("choix");
-
-        if(choice.equals("2")){
-            exercice.setEtatExercice(EtatExercice.EnCours);
-        } else if (choice.equals("1")) {
-            exercice.setEtatExercice(EtatExercice.Terminé);
-        }
+        exercice.setEtatExercice(EtatExercice.EnCours);
         exercice.setAnnée(an);
         exercice.setDate_debut(debut);
         exercice.setDate_fin(fin);
         exerciceService.Add(exercice);
+
     }
 }

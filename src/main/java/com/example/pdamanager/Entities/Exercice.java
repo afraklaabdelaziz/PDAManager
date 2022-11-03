@@ -13,6 +13,7 @@ public class Exercice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String Nom;
     private LocalDate Année;
 
     private  LocalDate Date_debut;
@@ -80,5 +81,13 @@ public class Exercice implements Serializable {
 
     public void setActivitéList(List<Activité> activitéList) {
         this.activitéList = activitéList;
+    }
+
+    public String getNom() {
+        return Nom;
+    }
+
+    public void setNom(String nom) {
+        Nom = nom;
     }
 }

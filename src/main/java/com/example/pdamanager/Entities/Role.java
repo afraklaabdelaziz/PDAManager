@@ -3,7 +3,9 @@ package com.example.pdamanager.Entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,17 +14,12 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
-    @ManyToMany
-    @JoinTable(name = "user_role")
-    private Set<User> users = new HashSet<>();
-
     public Role() {
     }
 
-    public Role(long id, String nom, Set<User> users) {
+    public Role(long id, String nom) {
         this.id = id;
         this.nom = nom;
-        this.users = users;
     }
 
     public long getId() {
@@ -41,11 +38,6 @@ public class Role implements Serializable {
         this.nom = nom;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+    @OneToMany(cascade =  CascadeType.ALL,mappedBy = "role")
+    private List<User> users = new ArrayList<>();
 }

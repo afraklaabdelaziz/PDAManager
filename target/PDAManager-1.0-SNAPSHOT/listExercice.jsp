@@ -1,4 +1,5 @@
-
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.pdamanager.Entities.Exercice" %>
 
 l<%--
   Created by IntelliJ IDEA.
@@ -8,7 +9,6 @@ l<%--
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <link
@@ -17,16 +17,25 @@ l<%--
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
           crossorigin="anonymous"
   />
-  <title>Title</title>
+  <title>ExerciceList</title>
 </head>
 <body>
-<c:forEach items="${exercices}" var="exercice">
+
 <ul>
-  <li>${exercice.getAnnée()}</li>
-  <li>${exercice.getDate_debut()}</li>
-  <li>${exercice.getDate_fin()}</li>
-  <li>${exercice.getEtatExercice()}</li>
+ <%
+     List<Exercice> exercices=(List<Exercice>) request.getAttribute("exercices");
+  for (Exercice exercice : exercices ){%>
+    <li><%=exercice.getId()%></li>
+    <li> Année: <%= exercice.getAnnée() %></li>
+    <li>Date Début: <%=exercice.getDate_debut()%></li>
+    <li> Date Fin:<%=exercice.getDate_fin()%></li>
+    <li>Etat d'exercice: <%=exercice.getEtatExercice()%></li>
+    <a href="/updateExercice">update</a>
+<%--    <form action="/updateExercice" method="get">--%>
+<%--        <input type="hidden" name="id" value="<%=exercice.getId()%>">--%>
+<%--        <input type="submit" value="update">--%>
+<%--    </form>--%>
 </ul>
-</c:forEach>
+<%}%>
 </body>
 </html>

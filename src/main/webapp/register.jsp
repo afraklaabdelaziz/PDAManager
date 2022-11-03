@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="com.example.pdamanager.Entities.Type" %><%--
   Created by IntelliJ IDEA.
   User: Youcode
   Date: 01/11/2022
@@ -36,13 +37,6 @@
         <input type="text" class="form-control" name="phone" >
     </div>
     <div class="mb-3">
-        <label >Saisir votre role:</label>
-        <select name="choix" >
-            <option value="1">Responsable</option>
-            <option value="2">Participant</option>
-        </select>
-    </div>
-    <div class="mb-3">
         <label class="form-label">Pays</label>
         <input type="text" class="form-control" name="pays" >
     </div>
@@ -65,5 +59,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 </body>
 </html>
