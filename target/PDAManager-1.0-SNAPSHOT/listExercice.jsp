@@ -1,5 +1,5 @@
-<%@ page import="com.example.pdamanager.Entities.Exercice" %>
-<%@ page import="java.util.List" %>
+
+
 l<%--
   Created by IntelliJ IDEA.
   User: Youcode
@@ -8,6 +8,7 @@ l<%--
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <link
@@ -19,16 +20,13 @@ l<%--
   <title>Title</title>
 </head>
 <body>
-
+<c:forEach items="${exercices}" var="exercice">
 <ul>
-  <% List<Exercice> exercices = (List<Exercice>) request.getAttribute("exercices"); %>
-  <% for (Exercice exercice:exercices){%>
-  <li><%=exercice.getAnnée()%></li>
-  <li><%=exercice.getDate_debut()%></li>
-  <li><%=exercice.getDate_fin()%></li>
-  <li><%=exercice.getEtatExercice()%></li>
-  <%}%>
+  <li>${exercice.getAnnée()}</li>
+  <li>${exercice.getDate_debut()}</li>
+  <li>${exercice.getDate_fin()}</li>
+  <li>${exercice.getEtatExercice()}</li>
 </ul>
-
+</c:forEach>
 </body>
 </html>
