@@ -5,6 +5,7 @@ import com.example.pdamanager.Entities.Exercice;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 import java.util.List;
 
@@ -28,7 +29,10 @@ public class ExerciceDaoImpl implements InterfaceDao<Exercice> {
 
     @Override
     public List<Exercice> getAll() {
-        return null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        Query query = entityManager.createQuery("SELECT a FROM Exercice a");
+        return query.getResultList();
     }
 
     @Override
