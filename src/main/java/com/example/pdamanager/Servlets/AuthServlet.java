@@ -14,6 +14,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register"})
 public class AuthServlet extends HttpServlet {
@@ -59,6 +61,7 @@ public class AuthServlet extends HttpServlet {
                     responsable.setEmail(Email);
                     responsable.setPhone(Phone);
                     responsable.setPassword(Password);
+                    List<Role> roles=new ArrayList<>();
                     userService.Add(responsable);
                     addres.setAdresse(adresse);
                     payss.setNom(pays);

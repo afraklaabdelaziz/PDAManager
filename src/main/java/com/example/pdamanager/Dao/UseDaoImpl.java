@@ -20,10 +20,8 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
           em.getTransaction().commit();
         }
     catch (Exception ex){
-
              em.getTransaction().rollback();
-
-         ex.printStackTrace();
+             ex.printStackTrace();
     }
         finally {
             em.close();
