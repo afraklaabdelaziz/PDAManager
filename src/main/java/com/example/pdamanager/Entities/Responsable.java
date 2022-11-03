@@ -21,7 +21,7 @@ public class Responsable extends User implements Serializable {
     }
 
     public Responsable(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles, String domaine, Type type) {
-        super(id, nom, prenom, email, phone, password, adresse, roles);
+        super(id, nom, prenom, email, phone, password, adresse);
         Domaine = domaine;
         this.type = type;
     }

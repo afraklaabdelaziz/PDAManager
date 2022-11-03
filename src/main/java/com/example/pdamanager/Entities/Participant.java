@@ -19,7 +19,7 @@ public class Participant extends User implements Serializable {
      public  Participant(){}
 
     public Participant(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles, String domaine, String structure, Genre genre, List<Participation> participationList) {
-        super(id, nom, prenom, email, phone, password, adresse, roles);
+        super(id, nom, prenom, email, phone, password, adresse);
         Domaine = domaine;
         Structure = structure;
         this.genre = genre;
