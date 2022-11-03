@@ -25,14 +25,14 @@ public class User implements Serializable {
     @JoinColumn(name = "adresse_ID")
     private Adresse adresse;
 
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "users")
-    private List<Role> roles = new ArrayList<>();
-
+    @ManyToOne
+    @JoinColumn(name = "role_ID")
+    private Role role;
 
     public User() {
     }
 
-    public User(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles) {
+    public User(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -40,15 +40,15 @@ public class User implements Serializable {
         this.phone = phone;
         this.password = password;
         this.adresse = adresse;
-        this.roles = roles;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public long getId() {

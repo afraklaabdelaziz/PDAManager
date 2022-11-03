@@ -19,6 +19,10 @@
 <body>
 <form method="post" name="AddExercice"   class="flex justify-content-center ms-5 me-5 w-75">
     <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type=text class="form-control" name="nom" >
+    </div>
+    <div class="mb-3">
         <label class="form-label">Année</label>
         <input type=date class="form-control" name="anne" >
     </div>
@@ -29,13 +33,6 @@
     <div class="mb-3">
         <label  class="form-label">Date Fin</label>
         <input type=date class="form-control" name="fin" >
-    </div>
-    <div>
-        <label >Saisir votre role:</label>
-        <select name="choix" >
-            <option value="1">Terminé</option>
-            <option value="2">En cours</option>
-        </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
