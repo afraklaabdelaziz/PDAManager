@@ -24,7 +24,7 @@ public class ActiveteServlet extends HttpServlet {
         case ("/updateActivete"):
             request.getRequestDispatcher("updateActivete.jsp").forward(request,response);
             break;
-        case ("/listActivete") :
+        case ("/listActivetes") :
             List<Activité> activites = activeteService.getAll();
             request.setAttribute("activetes",activites);
             request.getRequestDispatcher("listeActivete.jsp").forward(request,response);
