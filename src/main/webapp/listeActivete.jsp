@@ -11,16 +11,17 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActivete">add</button>
 <p class="h4">List Produits</p>
 
+<div class="d-flex flex-row ms-5 ps-5 flex-wrap gap-5">
 <c:forEach items="${activetes}" var="activete">
 
-<div class="d-flex flex-row ms-5 ps-5 flex-wrap gap-5">
     <div>
         <img  src="" alt="sdkjgjhgdjh">
         <p class="h5 m-2">Type activité : ${activete.getId()} </p>
         <p class="h5 m-2">Date : ${activete.getDate_debut()}</p>
     </div>
-</div>
+
 </c:forEach>
+</div>
 
 
 <div class="modal fade" id="addActivete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -33,7 +34,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" name="FormRegister" action="addActivete"  class="flex justify-content-center ms-5 me-5 w-75">
+                <form method="post" name="FormRegister" class="flex justify-content-center ms-5 me-5 w-75">
                     <div class="mb-3">
                         <label class="form-label">date debut</label>
                         <input type="date" class="form-control" name="dateDebut" >
@@ -49,6 +50,14 @@
                     <div class="mb-3">
                         <label class="form-label"> date fin inscription</label>
                         <input type="date" class="form-control" name="dateFI" >
+                    </div>
+
+                    <div class="mb-3">
+                        <select name="choixType">
+                        <c:forEach items="${typeActivete}" var="typeAc">
+                            <option value="${typeAc}">${typeAc}</option>
+                        </c:forEach>
+                        </select>
                     </div>
 
                     <div class="mb-3">
