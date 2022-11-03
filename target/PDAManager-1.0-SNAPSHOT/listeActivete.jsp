@@ -9,16 +9,10 @@
 </head>
 <body>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActivete">add</button>
-<<<<<<< HEAD
-    <table>
-=======
 <p class="h4">List Produits</p>
->>>>>>> origin
 
 <c:forEach items="${activetes}" var="activete">
 
-<<<<<<< HEAD
-=======
 <div class="d-flex flex-row ms-5 ps-5 flex-wrap gap-5">
     <div>
         <img  src="" alt="sdkjgjhgdjh">
@@ -29,7 +23,6 @@
 </c:forEach>
 
 
->>>>>>> origin
 <div class="modal fade" id="addActivete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -65,13 +58,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </form>
-<<<<<<< HEAD
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-=======
->>>>>>> origin
             </div>
         </div>
     </div>

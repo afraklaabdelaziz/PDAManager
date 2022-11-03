@@ -31,7 +31,9 @@ public class ExerciceDaoImpl implements InterfaceDao<Exercice> {
     public List<Exercice> getAll() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = emf.createEntityManager();
-        Query query = entityManager.createQuery("SELECT a FROM Exercice a");
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("select e from Exercice e",Exercice.class);
+        entityManager.getTransaction().commit();
         return query.getResultList();
     }
 
