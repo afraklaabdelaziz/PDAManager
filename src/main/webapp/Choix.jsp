@@ -11,7 +11,7 @@
     <title>Choix du role</title>
 </head>
 <body>
-  <form method="get" action="/PDAManager_war_exploded/register">
+  <form method="get" action="/PDAManager-1.0-SNAPSHOT/register">
     <div class="mb-3">
       <label >Saisir votre role:</label>
       <select name="choose">

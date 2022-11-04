@@ -20,6 +20,7 @@
     <li>Prenom : ${user.prenom}</li>
     <li>Email : ${user.email}</li>
     <li>Phone : ${user.phone}</li>
+    <li>Role : ${sessionScope.roleUser}</li>
 </ul>
 </body>
 </html>

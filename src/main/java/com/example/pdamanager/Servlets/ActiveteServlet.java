@@ -1,6 +1,7 @@
 package com.example.pdamanager.Servlets;
 
 import com.example.pdamanager.Entities.Activité;
+import com.example.pdamanager.Entities.Etat;
 import com.example.pdamanager.Entities.TypeActivité;
 import com.example.pdamanager.Services.ActiveteServiceImpl;
 import com.example.pdamanager.Services.InterfaceService;
@@ -25,7 +26,11 @@ public class ActiveteServlet extends HttpServlet {
             request.getRequestDispatcher("updateActivete.jsp").forward(request,response);
             break;
         case ("/listActivetes") :
+            TypeActivité [] typeActivites = TypeActivité.values();
+            request.setAttribute("typeActivete",typeActivites);
+
             List<Activité> activites = activeteService.getAll();
+
             request.setAttribute("activetes",activites);
             request.getRequestDispatcher("/listeActivete.jsp").forward(request,response);
             break;
@@ -40,6 +45,7 @@ public class ActiveteServlet extends HttpServlet {
        LocalDate dateDebut = LocalDate.parse(request.getParameter("dateDebut"));
        LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"));
        String description = request.getParameter("desc");
+       String type = request.getParameter("choixType");
 
        Activité activité =   new Activité();
         activité.setDate_debut(dateDebut);
@@ -47,7 +53,18 @@ public class ActiveteServlet extends HttpServlet {
         activité.setDate_fin_participation(dateFInsc);
         activité.setDate_fin(dateFin);
         activité.setDescription(description);
+        activité.setEtatActivité(Etat.Active);
+        switch (type){
+            case "Evenement":
+                activité.setTypeActivité(TypeActivité.Evenement);
+                break;
+            case "Formation" :
+                activité.setTypeActivité(TypeActivité.Formation);
+                break;
+            case "Talk" :
+                activité.setTypeActivité(TypeActivité.Talk);
+                break;
+        }
         activeteService.Add(activité);
-
     }
 }

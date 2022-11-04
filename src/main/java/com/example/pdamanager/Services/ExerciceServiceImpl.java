@@ -26,4 +26,9 @@ public class ExerciceServiceImpl implements InterfaceService <Exercice>{
         return exerciceDao.getAll();
     }
 
+    @Override
+    public Exercice findByID(long id) {
+        return null;
+    }
+
 }

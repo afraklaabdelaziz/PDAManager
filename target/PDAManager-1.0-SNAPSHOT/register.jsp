@@ -1,5 +1,6 @@
 <%@ page import="java.lang.reflect.Array" %>
-<%@ page import="com.example.pdamanager.Entities.Type" %><%--
+<%@ page import="com.example.pdamanager.Entities.Type" %>
+<%@ page import="com.example.pdamanager.Entities.Genre" %><%--
   Created by IntelliJ IDEA.
   User: Youcode
   Date: 01/11/2022
@@ -19,6 +20,7 @@
     <title>Register</title>
 </head>
 <body>
+
 <form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
     <div class="mb-3">
         <label class="form-label">Nom</label>
@@ -36,6 +38,43 @@
         <label class="form-label"> N Telephone</label>
         <input type="text" class="form-control" name="phone" >
     </div>
+
+    <% HttpSession session1 = request.getSession();if (session1.getAttribute("choose").equals("1")){%>
+    <div class="mb-3">
+        <label class="form-label">Domaine</label>
+        <input type="text" class="form-control" name="domaine" >
+    </div>
+    <div class="mb-3">
+        <label >Saisir votre Type</label>
+        <select name="typeResponsable" >
+            <%
+                Type [] types = (Type[]) request.getAttribute("typeRes");
+                for (Type type : types){%>
+            <option value="<%= type %>"><%= type %></option>
+            <% }%>
+        </select>
+    </div>
+    <%}else if (session1.getAttribute("choose").equals("2")){%>
+    <div class="mb-3">
+        <label class="form-label">Domain</label>
+        <input type="text" class="form-control" name="domaineP" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Structure</label>
+        <input type="text" class="form-control" name="structure" >
+    </div>
+
+    <div class="mb-3">
+        <label >Saisir votre Genre</label>
+        <select name="genre" >
+            <%
+                Genre[] genres = (Genre[]) request.getAttribute("genre");
+                for (Genre genre : genres){%>
+            <option value="<%= genre %>"><%= genre %></option>
+            <% }%>
+        </select>
+    </div>
+    <%}%>
     <div class="mb-3">
         <label class="form-label">Pays</label>
         <input type="text" class="form-control" name="pays" >

@@ -29,4 +29,9 @@ public class UserServiceImpl <T> implements InterfaceService<T> {
         return userDao.getAll();
     }
 
+    @Override
+    public T findByID(long id) {
+        return (T) userDao.findById(id);
+    }
+
 }

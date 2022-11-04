@@ -23,4 +23,9 @@ public class ActiveteServiceImpl implements InterfaceService<Activité>{
         return activeteDao.getAll();
     }
 
+    @Override
+    public Activité findByID(long id) {
+        return null;
+    }
+
 }
