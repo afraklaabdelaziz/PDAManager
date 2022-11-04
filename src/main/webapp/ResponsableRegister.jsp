@@ -38,7 +38,7 @@
   </div>
   <div class="mb-3">
     <label class="form-label">Domaine</label>
-    <input type="text" class="form-control" name="domaine" >
+    <input type="text" class="form-control" name="domaine">
   </div>
   <div class="mb-3">
     <label >Saisir votre Type</label>
