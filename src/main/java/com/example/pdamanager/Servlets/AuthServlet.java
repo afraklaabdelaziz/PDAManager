@@ -14,8 +14,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register","/Choix"})
 public class AuthServlet extends HttpServlet {
@@ -30,17 +28,14 @@ public class AuthServlet extends HttpServlet {
         String path=request.getServletPath();
         HttpSession session = request.getSession();
         String role=request.getParameter("choose");
-        System.out.println(role);
         session.setAttribute("choose",role);
         switch (path){
             case("/register"):
                 Type [] types = Type.values();
+                Genre[] genres = Genre.values();
+                request.setAttribute("genre",genres);
                 request.setAttribute("typeRes",types);
-                if (role.equals("1")){
-                    request.getRequestDispatcher("ResponsableRegister.jsp").forward(request,response);
-                }else if(role.equals("2")) {
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
-                }
+                request.getRequestDispatcher("register.jsp").forward(request, response);
                 break;
             case("/login"):
                 request.getRequestDispatcher("login.jsp").forward(request,response);
@@ -58,7 +53,6 @@ public class AuthServlet extends HttpServlet {
         HttpSession session = request.getSession();
         switch(path){
             case("/register"):
-                System.out.println("role de toi "+session.getAttribute("choose"));
                 String Nom=request.getParameter("nom");
                 String Prenom=request.getParameter("prenom");
                 String Email=request.getParameter("email");
@@ -70,6 +64,7 @@ public class AuthServlet extends HttpServlet {
                 String code=request.getParameter("code");
                 String typeRes = request.getParameter("typeResponsable") ;
                 String domaine=request.getParameter("domaine");
+                String genre = request.getParameter("genre");
                 Adresse addres=new Adresse();
                 Pays payss=new Pays();
                 Ville ville=new Ville();
@@ -113,6 +108,15 @@ public class AuthServlet extends HttpServlet {
                     participant.setEmail(Email);
                     participant.setPhone(Phone);
                     participant.setPassword(Password);
+
+                    switch (genre){
+                        case "Homme" :
+                            participant.setGenre(Genre.Homme);
+                            break;
+                        case "Femme" :
+                            participant.setGenre(Genre.Femme);
+                            break;
+                    }
                     addres.setAdresse(adresse);
                     payss.setNom(pays);
                     payss.setNom(pays);
@@ -134,12 +138,14 @@ public class AuthServlet extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 User  findEmail = (User) userService.findUserByEmail(email);
+
                 HttpSession sessionn = request.getSession();
                 if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)) {
                     sessionn.setAttribute("name", findEmail.getNom());
                     sessionn.setAttribute("prenom", findEmail.getPrenom());
                     request.setAttribute("user", findEmail);
-
+                    Role roleUser = (Role) userService.findByID(findEmail.getRole().getId());
+                    sessionn.setAttribute("roleUser",roleUser.getNom());
                     request.getRequestDispatcher("connect.jsp").forward(request, response);
                 }else{
                     session.setAttribute("error","mot de passe ou email incorrect");

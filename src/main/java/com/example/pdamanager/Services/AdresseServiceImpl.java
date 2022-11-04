@@ -23,6 +23,10 @@ public class AdresseServiceImpl<T> implements InterfaceService <T> {
         return null;
     }
 
+    @Override
+    public T findByID(long id) {
+        return null;
+    }
 
 
     public void Add(Ville ville){
