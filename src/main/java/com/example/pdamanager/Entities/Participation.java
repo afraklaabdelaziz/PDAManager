@@ -15,6 +15,9 @@ public class Participation implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ParticipantId")
     private Participant participant;
+    @ManyToOne
+    @JoinColumn(name = "activite_id")
+    private Activité activite;
     public Participation(){}
     public Participation(Long id, Statut statut) {
         this.id = id;
@@ -35,5 +38,21 @@ public class Participation implements Serializable {
 
     public void setStatut(Statut statut) {
         this.statut = statut;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
+    }
+
+    public Activité getActivite() {
+        return activite;
+    }
+
+    public void setActivite(Activité activite) {
+        this.activite = activite;
     }
 }
