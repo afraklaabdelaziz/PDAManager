@@ -90,6 +90,11 @@
                 <form action="/PDAManager_war_exploded/listActivetes" method="post" class="form-group w-100">
                     <p class="h4">Ajouter activite</p>
                     <div>
+                        <label for="title" class="label-control">Title</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                        <div class="error"></div>
+                    </div>
+                    <div>
                         <label for="dateD" class="label-control">date debut</label>
                         <input type="date" class="form-control" name="dateDebut" id="dateD">
                         <div class="error"></div>
@@ -114,6 +119,15 @@
                         <select class="form-select" name="choixType" id="choixType">
                             <c:forEach items="${typeActivete}" var="typeAc">
                                 <option value="${typeAc}">${typeAc}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="responsable" class="label-control">Choisir Responsable</label>
+                        <select class="form-select" name="responsable" id="responsable">
+                            <c:forEach items="${responsables}" var="responsable">
+                                <option value="${responsable.getId()}">${responsable.getNom()} ${responsable.getPrenom()}</option>
                             </c:forEach>
                         </select>
                     </div>

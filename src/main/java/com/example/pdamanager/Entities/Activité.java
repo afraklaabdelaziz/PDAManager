@@ -30,8 +30,8 @@ public class Activité implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private TypeActivité typeActivité;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ResponsableId",referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "Responsable_id",referencedColumnName = "id")
     private Responsable responsable;
 
     @OneToMany(mappedBy = "activite")
