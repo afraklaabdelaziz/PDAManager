@@ -44,12 +44,14 @@ public class Main {
         Role role1=new Role();
         role1.setNom("Responsable");
         Role role2=new Role();
-        role2.setNom("partiipant");
+        role2.setNom("participant");
         entityManager.getTransaction().begin();
         entityManager.persist(role);
         entityManager.persist(role1);
         entityManager.persist(role2);
         entityManager.getTransaction().commit();
+
+
 
     }
 }

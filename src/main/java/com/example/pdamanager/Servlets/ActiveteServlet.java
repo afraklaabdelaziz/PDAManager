@@ -1,11 +1,9 @@
 package com.example.pdamanager.Servlets;
 
-import com.example.pdamanager.Entities.Activité;
-import com.example.pdamanager.Entities.Etat;
-import com.example.pdamanager.Entities.TypeActivité;
-import com.example.pdamanager.Entities.User;
+import com.example.pdamanager.Entities.*;
 import com.example.pdamanager.Services.ActiveteServiceImpl;
 import com.example.pdamanager.Services.InterfaceService;
+import com.example.pdamanager.Services.ResponsableServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -19,6 +17,7 @@ public class ActiveteServlet extends HttpServlet {
 
     TypeActivité typeActivité;
     InterfaceService activeteService = new ActiveteServiceImpl();
+    InterfaceService responsableService = new ResponsableServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
@@ -35,6 +34,15 @@ public class ActiveteServlet extends HttpServlet {
             TypeActivité [] typeActivites = TypeActivité.values();
             request.setAttribute("typeActivete",typeActivites);
             List<Activité> activites = activeteService.getAll();
+            List<Responsable> responsables = responsableService.getAll();
+            for (Activité activite : activites){
+                for (Responsable responsable : responsables){
+                    if (activite.getResponsable().getId() == responsable.getId()){
+                        
+                    }
+                }
+            }
+            request.setAttribute("responsables",responsables);
             request.setAttribute("activetes",activites);
             request.getRequestDispatcher("/listeActivete.jsp").forward(request,response);
             break;
@@ -46,19 +54,25 @@ public class ActiveteServlet extends HttpServlet {
     String path = request.getServletPath();
         switch (path){
             case ("/listActivetes") :
+                String title = request.getParameter("title");
                 LocalDate dateDInsc = LocalDate.parse(request.getParameter("dateDI"));
                 LocalDate dateFInsc = LocalDate.parse(request.getParameter("dateFI"));
                 LocalDate dateDebut = LocalDate.parse(request.getParameter("dateDebut"));
                 LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"));
                 String description = request.getParameter("desc");
                 String type = request.getParameter("choixType");
+                String responsable = request.getParameter("responsable");
+                Responsable responsable1 = new Responsable();
+                responsable1.setId(Long.parseLong(responsable));
                 Activité activité =   new Activité();
+                activité.setTitle(title);
                 activité.setDate_debut(dateDebut);
                 activité.setDate_de_participation(dateDInsc);
                 activité.setDate_fin_participation(dateFInsc);
                 activité.setDate_fin(dateFin);
                 activité.setDescription(description);
                 activité.setEtatActivité(Etat.Active);
+                activité.setResponsable(responsable1);
                 switch (type){
                     case "Evenement":
                         activité.setTypeActivité(TypeActivité.Evenement);
@@ -71,6 +85,7 @@ public class ActiveteServlet extends HttpServlet {
                         break;
                 }
                 activeteService.Add(activité);
+                response.sendRedirect("/PDAManager_war_exploded/listActivetes");
                           break;
             case ("/updateActivete") :
                 LocalDate dateDInscUp = LocalDate.parse(request.getParameter("dateDIUp"));
@@ -98,6 +113,7 @@ public class ActiveteServlet extends HttpServlet {
                         break;
                 }
                 activeteService.update(activiteUp);
+                response.sendRedirect("/PDAManager_war_exploded/listActivetes");
                 break;
         }
 
