@@ -10,6 +10,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete"})
@@ -38,7 +40,10 @@ public class ActiveteServlet extends HttpServlet {
             for (Activité activite : activites){
                 for (Responsable responsable : responsables){
                     if (activite.getResponsable().getId() == responsable.getId()){
-                        
+                        responsables.removeAll(Arrays.asList(responsable));
+                    }
+                    if (responsables.size() == 0){
+                        break;
                     }
                 }
             }
