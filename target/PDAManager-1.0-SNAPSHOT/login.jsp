@@ -9,17 +9,16 @@
 
 <html>
 <head>
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-            crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="Asets/css/style.css">
+    <script src="https://kit.fontawesome.com/a523390b1d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <title>Register</title>
 </head>
-<body>
+<body class="d-flex justify-content-center align-items-center">
 
-<form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
+<form method="post"  class="flex justify-content-center p-5 bg-light">
     <div class="alert alert-danger" role="alert">
         ${sessionScope.error}
     </div>
