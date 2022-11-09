@@ -146,7 +146,17 @@ public class AuthServlet extends HttpServlet {
                     request.setAttribute("user", findEmail);
                     Role roleUser = (Role) userService.findByID(findEmail.getRole().getId());
                     sessionn.setAttribute("roleUser",roleUser.getNom());
-                    request.getRequestDispatcher("connect.jsp").forward(request, response);
+                    switch (roleUser.getNom()){
+                        case ("Admin") :
+                            response.sendRedirect("/PDAManager_war_exploded/listActivetes");
+                            break;
+                        case ("Responsable"):
+                            response.sendRedirect("/PDAManager_war_exploded/");
+                            break;
+                        case ("Participant") :
+                            response.sendRedirect("/PDAManager_war_exploded/dashboard");
+                            break;
+                    }
                 }else{
                     session.setAttribute("error","mot de passe ou email incorrect");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
