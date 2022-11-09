@@ -57,8 +57,6 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
             em.getTransaction().rollback();
 
             ex.printStackTrace();
-        } finally {
-            em.close();
         }
         return (T) role;
     }

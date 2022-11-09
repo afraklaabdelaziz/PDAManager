@@ -29,6 +29,19 @@ public class ActiveteServlet extends HttpServlet {
             request.setAttribute("typeActiveteUp",typeActivitesUp);
             long id = Long.parseLong(request.getParameter("id"));
             Activité findActivite = (Activité) activeteService.findByID(id);
+            List<Activité> activitess = activeteService.getAll();
+            List<Responsable> responsabless = responsableService.getAll();
+            for (Activité activite : activitess){
+                for (Responsable responsable : responsabless){
+                    if (activite.getResponsable().getId() == responsable.getId()) {
+                        responsabless.removeAll(Arrays.asList(responsable));
+                    }
+                    if (responsabless.size() == 0){
+                        break;
+                    }
+                }
+            }
+            request.setAttribute("responsables",responsabless);
             request.setAttribute("actevete",findActivite);
             request.getRequestDispatcher("updateActivete.jsp").forward(request,response);
             break;
@@ -66,10 +79,15 @@ public class ActiveteServlet extends HttpServlet {
                 LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"));
                 String description = request.getParameter("desc");
                 String type = request.getParameter("choixType");
-                String responsable = request.getParameter("responsable");
+                String  responsable = request.getParameter("responsable");
                 Responsable responsable1 = new Responsable();
-                responsable1.setId(Long.parseLong(responsable));
                 Activité activité =   new Activité();
+                if (responsable == null){
+                    activité.setResponsable(null);
+                }else {
+                    responsable1.setId(Long.parseLong(responsable));
+                    activité.setResponsable(responsable1);
+                }
                 activité.setTitle(title);
                 activité.setDate_debut(dateDebut);
                 activité.setDate_de_participation(dateDInsc);
@@ -77,7 +95,6 @@ public class ActiveteServlet extends HttpServlet {
                 activité.setDate_fin(dateFin);
                 activité.setDescription(description);
                 activité.setEtatActivité(Etat.Active);
-                activité.setResponsable(responsable1);
                 switch (type){
                     case "Evenement":
                         activité.setTypeActivité(TypeActivité.Evenement);
@@ -99,7 +116,11 @@ public class ActiveteServlet extends HttpServlet {
                 LocalDate dateFinUp = LocalDate.parse(request.getParameter("dateFinUp"));
                 String descriptionUp = request.getParameter("descUp");
                 String typeUp = request.getParameter("choixTypeUp");
-                Activité activiteUp =   new Activité();
+                String titleUp = request.getParameter("titleUp");
+                Long idActivite = Long.parseLong(request.getParameter("id"));
+
+                Activité activiteUp = (Activité) activeteService.findByID(idActivite);
+                activiteUp.setTitle(titleUp);
                 activiteUp.setDate_debut(dateDebutUp);
                 activiteUp.setDate_de_participation(dateDInscUp);
                 activiteUp.setDate_fin_participation(dateFInscUp);

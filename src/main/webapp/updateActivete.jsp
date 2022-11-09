@@ -16,9 +16,14 @@
 
     <title>Title</title>
 </head>
-<body>
-<form action="" method="post" class="form-group">
+<body class="d-flex justify-content-center">
+<form action="" method="post" class="form-group col-6">
     <p class="h4">Edite Activetes</p>
+    <div>
+        <label for="titleUp" class="label-control">Title</label>
+        <input type="text" class="form-control" name="titleUp" id="titleUp" value="${actevete.getTitle()}">
+        <div class="error"></div>
+    </div>
     <div>
         <label for="dateD" class="label-control">date debut</label>
         <input type="date" class="form-control" name="dateDebutUp" id="dateD" value="${actevete.getDate_debut()}">
@@ -43,7 +48,15 @@
         <label for="choixType" class="label-control">Choisir type activite</label>
         <select class="form-select" name="choixTypeUp" id="choixType">
             <c:forEach items="${typeActiveteUp}" var="typeAc">
-                <option value="${typeAc}">${typeAc}</option>
+                <option <c:if test="${typeAc == actevete.getTypeActivité()}" >selected</c:if> value="${typeAc}">${typeAc}</option>
+            </c:forEach>
+        </select>
+    </div>
+    <div>
+        <label for="responsableUp" class="label-control">Choisir Responsable</label>
+        <select class="form-select" name="responsableUp" id="responsableUp">
+            <c:forEach items="${responsables}" var="responsable">
+                <option value="${responsable.getId()}">${responsable.getNom()} ${responsable.getPrenom()}</option>
             </c:forEach>
         </select>
     </div>

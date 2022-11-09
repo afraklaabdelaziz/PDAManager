@@ -3,8 +3,6 @@ package com.example.pdamanager.Entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -32,7 +30,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse) {
+    public User(Long id, String nom, String prenom, String email, String phone, String password, Adresse adresse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -55,7 +53,7 @@ public class User implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
