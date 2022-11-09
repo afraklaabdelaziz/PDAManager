@@ -16,8 +16,8 @@
 
     <title>Title</title>
 </head>
-<body class="d-flex justify-content-center">
-<form action="" method="post" class="form-group col-6">
+<body class="d-flex justify-content-center align-items-center">
+<form action="" method="post" class="p-3 bg-light col-11 col-md-6 gap-2">
     <p class="h4">Edite Activetes</p>
     <div>
         <label for="titleUp" class="label-control">Title</label>

@@ -19,6 +19,9 @@ header{
 }
   .btns{
       background-color: #009DAE;
+      border: 1px solid;
+      border-radius: 5px;
+      color: white;
   }
   .active-cont {
     margin-left: 260px;
@@ -60,4 +63,13 @@ padding:14px;
     flex-direction: column;
     min-width: 160px;
     bottom: 120px;
+}
+
+img{
+    width: 90px !important;
+}
+a{
+    text-decoration: none !important;
+    color: black;
+    font-weight: bold;
 }
