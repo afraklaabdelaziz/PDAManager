@@ -18,4 +18,5 @@ EntityManager entityManager ;
         entityManager.getTransaction().commit();
         return (User) query.getSingleResult();
     }
+
 }

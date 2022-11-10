@@ -1,25 +1,26 @@
 package com.example.pdamanager.Servlets;
 
 import com.example.pdamanager.Entities.*;
-import com.example.pdamanager.Services.ActiveteServiceImpl;
-import com.example.pdamanager.Services.InterfaceService;
-import com.example.pdamanager.Services.ResponsableServiceImpl;
+import com.example.pdamanager.Services.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete"})
+@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/profile"})
 public class ActiveteServlet extends HttpServlet {
 
     TypeActivité typeActivité;
     InterfaceService activeteService = new ActiveteServiceImpl();
     InterfaceService responsableService = new ResponsableServiceImpl();
+    InterfaceService adresseService=new AdresseServiceImpl();
+    InterfaceService villeService = new VilleServiceImpl();
+    InterfaceService paysService = new PaysServiceImpl();
+    UserServiceImpl userService = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
@@ -64,12 +65,16 @@ public class ActiveteServlet extends HttpServlet {
             request.setAttribute("activetes",activites);
             request.getRequestDispatcher("/listeActivete.jsp").forward(request,response);
             break;
+        case ("/profile"):
+            request.getRequestDispatcher("adminProfile.jsp").forward(request,response);
+            break;
     }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
+    HttpSession session = request.getSession();
         switch (path){
             case ("/listActivetes") :
                 String title = request.getParameter("title");
@@ -140,6 +145,37 @@ public class ActiveteServlet extends HttpServlet {
                 }
                 activeteService.update(activiteUp);
                 response.sendRedirect("/PDAManager_war_exploded/listActivetes");
+                break;
+            case ("/profile") :
+                String nomUp=request.getParameter("nomUp");
+                String prenomUp=request.getParameter("prenomUp");
+                String emailUp=request.getParameter("emailUp");
+                String phoneUp=request.getParameter("phoneUp");
+                String passwordUp=request.getParameter("passwordUp");
+                System.out.println(passwordUp);
+                String paysUp=request.getParameter("paysUp");
+                String villeUp=request.getParameter("villeUp");
+                String adresseUp=request.getParameter("adresseUp");
+                User user = (User) userService.findUserByEmail((String) session.getAttribute("email"));
+                user.setEmail(emailUp);
+                user.setPrenom(prenomUp);
+                user.setNom(nomUp);
+                user.setPassword(passwordUp);
+                user.setPhone(phoneUp);
+                Adresse adresse1 = (Adresse) adresseService.findByID((Long) session.getAttribute("idAdresse"));
+                Ville ville1 = (Ville) villeService.findByID((Long) session.getAttribute("idVille"));
+                Pays pays1 = (Pays) paysService.findByID((Long) session.getAttribute("idPays"));
+                adresse1.setAdresse(adresseUp);
+                pays1.setNom(paysUp);
+                ville1.setNom(villeUp);
+                paysService.update(pays1);
+                villeService.update(ville1);
+                adresseService.update(adresse1);
+                ville1.setPays(pays1);
+                adresse1.setVille(ville1);
+                user.setAdresse(adresse1);
+                userService.update(user);
+                response.sendRedirect("/PDAManager_war_exploded/profile");
                 break;
         }
 

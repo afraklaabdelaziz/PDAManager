@@ -9,7 +9,7 @@ import java.util.List;
 public class Ville {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nom;
     @OneToMany (cascade = CascadeType.ALL ,mappedBy = "ville")
     private List<Adresse> adresses = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Ville {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

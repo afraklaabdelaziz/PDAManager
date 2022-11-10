@@ -1,40 +1,21 @@
 package com.example.pdamanager.Dao;
 
-import com.example.pdamanager.Entities.Adresse;
+import com.example.pdamanager.Entities.Pays;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
+public class PaysDaoImpl implements InterfaceDao<Pays>{
     private EntityManager em;
     @Override
-    public void add(T t) {
+    public void add(Pays pays) {
         EntityManagerFactory Entity= Persistence.createEntityManagerFactory("PDAManager");
         em=Entity.createEntityManager();
         em.getTransaction().begin();
         try{
-            em.persist(t);
-            em.getTransaction().commit();
-        }
-        catch (Exception ex){
-
-            em.getTransaction().rollback();
-
-            ex.printStackTrace();
-        }
-        finally {
-            em.close();
-            Entity.close();
-        }
-    }
-    public  void addVille(T t){
-        EntityManagerFactory Entity= Persistence.createEntityManagerFactory("PDAManager");
-        em=Entity.createEntityManager();
-        em.getTransaction().begin();
-        try{
-            em.persist(t);
+            em.persist(pays);
             em.getTransaction().commit();
         }
         catch (Exception ex){
@@ -47,59 +28,50 @@ public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
             em.close();
         }
     }
-    public void addPays(T t){
-        EntityManagerFactory Entity= Persistence.createEntityManagerFactory("PDAManager");
-        em=Entity.createEntityManager();
-        em.getTransaction().begin();
-        try{
-            em.persist(t);
-            em.getTransaction().commit();
-        }
-        catch (Exception ex){
 
-            em.getTransaction().rollback();
-
-            ex.printStackTrace();
-        }
-        finally {
-            em.close();
-        }
-    }
     @Override
-    public List<T> getAll() {
+    public List<Pays> getAll() {
         return null;
     }
 
     @Override
-    public void update(T t) {
-      EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
-      em = emf.createEntityManager();
-      em.getTransaction().begin();
-      em.merge(t);
-      em.getTransaction().commit();
-        em.close();
-        emf.close();
+    public void update(Pays pays) {
+        EntityManagerFactory Entity= Persistence.createEntityManagerFactory("PDAManager");
+        em=Entity.createEntityManager();
+        em.getTransaction().begin();
+        try{
+            em.merge(pays);
+            em.getTransaction().commit();
+        }
+        catch (Exception ex){
+
+            em.getTransaction().rollback();
+
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
     }
 
     @Override
-
-    public T findById(Long id) {
+    public Pays findById(Long id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         em = emf.createEntityManager();
         em.getTransaction().begin();
-        Adresse adresse = new Adresse();
+        Pays pays = new Pays();
         try {
-            adresse = em.find(Adresse.class, id);
+            pays = em.find(Pays.class, id);
             em.getTransaction().commit();
         } catch (Exception ex) {
 
             em.getTransaction().rollback();
 
             ex.printStackTrace();
-        } finally {
+        }
+        finally {
             em.close();
         }
-        return (T) adresse;
+        return pays;
     }
-
 }

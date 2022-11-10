@@ -1,7 +1,6 @@
 package com.example.pdamanager.Dao;
 
 import com.example.pdamanager.Entities.Responsable;
-import com.example.pdamanager.Entities.Role;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -9,7 +8,7 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 
 public class ResponsableDaoImpl  implements InterfaceDao<Responsable> {
-    EntityManager em;
+    private EntityManager em;
     @Override
     public void add(Responsable responsable) {
 
@@ -22,6 +21,7 @@ public class ResponsableDaoImpl  implements InterfaceDao<Responsable> {
         em.getTransaction().begin();
         List<Responsable> responsables = em.createQuery("select r from Responsable r", Responsable.class).getResultList();
         em.getTransaction().commit();
+        em.close();
         return  responsables;
     }
 

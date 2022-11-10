@@ -1,70 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Youcode
-  Date: 01/11/2022
-  Time: 10:28
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="Asets/css/style.css">
-    <script src="https://kit.fontawesome.com/a523390b1d.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+<mvc:resources location="/Asets/" mapping="/Asets/**"></mvc:resources>
+<jsp:include page="head.jsp"></jsp:include>
     <title>Title</title>
 </head>
 <body>
 <div>
-<aside id="aside" class="side-bar col-sm-2 col-md-3 col-lg-2 d-flex flex-column gap-5">
-    <div class="text-center">
-        <p class="fw-bold h5 mt-2 name d-md-inline d-none">Gestion d'école</p>
-        <div class="d-flex flex-column align-items-center mt-5">
-            <img class="rounded-circle w-50 img d-none d-md-inline" src="abdelaziz.jpg" alt="admin">
-            <span class="text-info name d-none d-md-inline  name">admin</span>
-        </div>
-    </div>
-
-    <ul class="list-group">
-
-        <li class="list-group-item">
-            <a data-bs-toggle="list" class="btn mt-2 text-light d-flex" href="#">
-                <i class="fas fa-home pe-3"></i>
-                <span class="fw-bold name d-none d-md-inline">Home</span>
-            </a>
-        </li>
-
-
-        <li class="list-group-item">
-            <a data-bs-toggle="list" class="btn mt-2 text-light d-flex" href="#">
-                <i class="fas fa-graduation-cap pe-3"></i>
-                <span class="fw-bold text-white name d-none d-md-inline">Etudiant</span>
-            </a>
-        </li>
-
-
-
-
-        <li class="list-group-item">
-            <a data-bs-toggle="list" class="btn mt-5 text-light d-flex" href="#">
-                <i class="fas fa-right-from-bracket pe-3"></i>
-                <span class="fw-bold name d-none d-md-inline">Logout</span>
-            </a>
-        </li>
-
-    </ul>
-</aside>
-
-
-<div class="px-1 active-cont">
-    <header class="position-sticky bg-light top-0 w-100">
-        <i class="btn fas fa-hand-point-right"></i>
-    </header>
+    <jsp:include page="side.jsp"></jsp:include>
 <div class="d-flex justify-content-between mb-4">
 <p class="h4">List Activites</p>
 <div class="btn btns" data-bs-toggle="modal" href="#addActivete">Ajouter Activite</div>
@@ -76,6 +18,7 @@
         <p class="h5 nameClass mt-2">Type activité : ${activete.getTypeActivité()}</p>
         <p> <span class="fas fa-users"></span> Date : ${activete.getDate_debut()} </p>
         <p> <span class="fas fa-users"></span> Date : ${activete.getDate_debut()} </p>
+        <p> <span class="fas fa-users"></span> Date : ${user.getNom()} </p>
         <a href="/PDAManager_war_exploded/updateActivete?id=${activete.getId()}"><i class="fas fa-edit edite"></i></a>
     </div>
     </c:forEach>

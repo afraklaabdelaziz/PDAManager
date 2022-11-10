@@ -1,7 +1,6 @@
 package com.example.pdamanager.Dao;
 
 import com.example.pdamanager.Entities.Activité;
-import com.example.pdamanager.Entities.Role;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -10,7 +9,7 @@ import jakarta.persistence.Query;
 import java.util.List;
 
 public class ActiveteDaoImpl implements InterfaceDao<Activité>{
-    private EntityManager entityManager;
+    EntityManager entityManager;
     @Override
     public void add(Activité activité) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
@@ -22,8 +21,6 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
         }catch (Exception e){
             entityManager.getTransaction().rollback();
             e.printStackTrace();
-        }finally {
-            entityManager.close();
         }
     }
 
@@ -43,6 +40,7 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
         entityManager.getTransaction().begin();
         entityManager.merge(activite);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
@@ -59,8 +57,6 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
             entityManager.getTransaction().rollback();
 
             ex.printStackTrace();
-        } finally {
-            entityManager.close();
         }
         return activite;
     }
