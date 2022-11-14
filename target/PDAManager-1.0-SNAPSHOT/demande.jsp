@@ -16,8 +16,10 @@
     <c:forEach items="${demandesRes}" var="demande">
         <li>${demande.getMessage()}</li>
          <form method="post">
+             <input type="hidden" name="email" value="${demande.getParticipant().getEmail()}">
+             <input type="hidden" name="id" value="${demande.getId()}">
              <button value="refuse" type="submit" name="statut">Refuse</button>
-             <button value="acceept" type="submit" name="statut">Accepte</button>
+             <button value="accept" type="submit" name="statut">Accepte</button>
          </form>
     </c:forEach>
 </ul>

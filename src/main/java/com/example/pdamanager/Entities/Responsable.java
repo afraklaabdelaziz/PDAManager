@@ -45,4 +45,20 @@ public class Responsable extends User implements Serializable {
     public void setType(Type type) {
         this.type = type;
     }
+
+    public Activité getActivité() {
+        return activité;
+    }
+
+    public void setActivité(Activité activité) {
+        this.activité = activité;
+    }
+
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    public void setDemandes(List<Demande> demandes) {
+        this.demandes = demandes;
+    }
 }
