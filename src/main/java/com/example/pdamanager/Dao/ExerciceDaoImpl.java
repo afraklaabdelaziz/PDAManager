@@ -39,7 +39,6 @@ public class ExerciceDaoImpl implements InterfaceDao<Exercice> {
 
     @Override
     public void update(Exercice exercice) {
-
     }
 
     @Override

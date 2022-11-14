@@ -35,6 +35,7 @@ public class ActiveteServlet extends HttpServlet {
             request.getRequestDispatcher("/listeActivete.jsp").forward(request,response);
             break;
     }
+
     }
 
     @Override
