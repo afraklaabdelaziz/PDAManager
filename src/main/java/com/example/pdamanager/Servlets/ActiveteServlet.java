@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ActiveteServlet extends HttpServlet {
     InterfaceService villeService = new VilleServiceImpl();
     InterfaceService paysService = new PaysServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
+    InterfaceService exrciceService = new ExerciceServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
@@ -51,6 +53,8 @@ public class ActiveteServlet extends HttpServlet {
             request.setAttribute("typeActivete",typeActivites);
             List<Activité> activites = activeteService.getAll();
             List<Responsable> responsables = responsableService.getAll();
+            List<Exercice> exercices = exrciceService.getAll();
+            request.setAttribute("exercices",exercices);
             for (Activité activite : activites){
                 for (Responsable responsable : responsables){
                     if (activite.getResponsable().getId() == responsable.getId()){
@@ -83,11 +87,17 @@ public class ActiveteServlet extends HttpServlet {
                 LocalDate dateFInsc = LocalDate.parse(request.getParameter("dateFI"));
                 LocalDate dateDebut = LocalDate.parse(request.getParameter("dateDebut"));
                 LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"));
+                String[] exerciceString = request.getParameterValues("exercices");
                 String description = request.getParameter("desc");
                 String type = request.getParameter("choixType");
                 String  responsable = request.getParameter("responsable");
                 Responsable responsable1 = new Responsable();
                 Activité activité =   new Activité();
+                List<Exercice> exercices = new ArrayList<>();
+                for (String s : exerciceString) {
+                    exercices.add(new Exercice( Long.parseLong(s) ));
+                }
+                activité.setExerciceList(exercices);
                 if (responsable == null){
                     activité.setResponsable(null);
                 }else {
