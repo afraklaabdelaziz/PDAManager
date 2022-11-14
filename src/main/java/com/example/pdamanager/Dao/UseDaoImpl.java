@@ -8,13 +8,12 @@ import jakarta.persistence.*;
 
 
 public class UseDaoImpl<T>  implements InterfaceDao <T> {
-    EntityManagerFactory Entity = Persistence.createEntityManagerFactory("PDAManager");
-    EntityManager em = Entity.createEntityManager();
+    private EntityManager em;
 
     @Override
     public void add(T t) {
-        EntityManagerFactory Entity = Persistence.createEntityManagerFactory("PDAManager");
-        em = Entity.createEntityManager();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
             em.persist(t);
@@ -30,7 +29,8 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
 
     @Override
     public void update(T t) {
-
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
             em.merge(t);
@@ -47,6 +47,8 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
 
     @Override
     public T findById(Long id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         Role role = new Role();
         try {
@@ -57,7 +59,8 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
             em.getTransaction().rollback();
 
             ex.printStackTrace();
-        } finally {
+        }
+        finally {
             em.close();
         }
         return (T) role;
@@ -65,11 +68,14 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
 
     @Override
     public List<T> getAll() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         List<User> users = em.createQuery("select user from User user", User.class).getResultList();//.stream().map(u->u.getNom()).forEach(System.out::println);
         users.stream().map(u -> u.getNom()).forEach(System.out::println);
 
         em.getTransaction().commit();
+        em.close();
         return (List<T>) users;
 
     }

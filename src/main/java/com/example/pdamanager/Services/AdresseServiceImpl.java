@@ -25,7 +25,7 @@ public class AdresseServiceImpl<T> implements InterfaceService <T> {
 
     @Override
     public T findByID(long id) {
-        return null;
+        return (T) AdresseDao.findById(id);
     }
 
 

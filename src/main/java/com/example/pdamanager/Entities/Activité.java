@@ -2,6 +2,8 @@ package com.example.pdamanager.Entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -10,8 +12,10 @@ public class Activité implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Description;
 
+    private String title;
+
+    private String Description;
 
     private LocalDate Date_debut;
 
@@ -26,14 +30,18 @@ public class Activité implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private TypeActivité typeActivité;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ResponsableId",referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "Responsable_id",referencedColumnName = "id")
     private Responsable responsable;
+
+    @OneToMany(mappedBy = "activite")
+    private List<Participation> participationList= new ArrayList<>();
 
     public  Activité(){}
 
-    public Activité(Long id, String description, LocalDate date_debut, LocalDate date_fin, LocalDate date_de_participation, LocalDate date_fin_participation, Etat etatActivité, TypeActivité typeActivité, Responsable responsable) {
+    public Activité(Long id, String title, String description, LocalDate date_debut, LocalDate date_fin, LocalDate date_de_participation, LocalDate date_fin_participation, Etat etatActivité, TypeActivité typeActivité, Responsable responsable) {
         this.id = id;
+        this.title = title;
         Description = description;
         Date_debut = date_debut;
         this.date_fin = date_fin;
@@ -113,5 +121,21 @@ public class Activité implements Serializable {
 
     public void setTypeActivité(TypeActivité typeActivité) {
         this.typeActivité = typeActivité;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Participation> getParticipationList() {
+        return participationList;
+    }
+
+    public void setParticipationList(List<Participation> participationList) {
+        this.participationList = participationList;
     }
 }

@@ -10,12 +10,14 @@ public class ActiveteServiceImpl implements InterfaceService<Activité>{
     InterfaceDao activeteDao = new ActiveteDaoImpl();
     @Override
     public void Add(Activité activité) {
+        System.out.println(3);
         activeteDao.add(activité);
+        System.out.println(4);
     }
 
     @Override
     public void update(Activité activité) {
-
+     activeteDao.update(activité);
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ActiveteServiceImpl implements InterfaceService<Activité>{
 
     @Override
     public Activité findByID(long id) {
-        return null;
+        return (Activité) activeteDao.findById(id);
     }
 
 }

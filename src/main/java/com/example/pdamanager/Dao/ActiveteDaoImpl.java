@@ -9,7 +9,7 @@ import jakarta.persistence.Query;
 import java.util.List;
 
 public class ActiveteDaoImpl implements InterfaceDao<Activité>{
-    private EntityManager entityManager;
+    EntityManager entityManager;
     @Override
     public void add(Activité activité) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
@@ -21,8 +21,6 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
         }catch (Exception e){
             entityManager.getTransaction().rollback();
             e.printStackTrace();
-        }finally {
-            entityManager.close();
         }
     }
 
@@ -36,12 +34,30 @@ public class ActiveteDaoImpl implements InterfaceDao<Activité>{
     }
 
     @Override
-    public void update(Activité activité) {
-
+    public void update(Activité activite) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.merge(activite);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
     public Activité findById(Long id) {
-        return null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        Activité activite = new Activité();
+        try {
+            activite = entityManager.find(Activité.class, id);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+
+            entityManager.getTransaction().rollback();
+
+            ex.printStackTrace();
+        }
+        return activite;
     }
 }

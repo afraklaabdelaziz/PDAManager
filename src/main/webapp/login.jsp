@@ -1,25 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Youcode
-  Date: 01/11/2022
-  Time: 10:28
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<html>
-<head>
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-            crossorigin="anonymous"
-    />
+<jsp:include page="head.jsp"></jsp:include>
     <title>Register</title>
 </head>
-<body>
+<body class="d-flex justify-content-center align-items-center">
 
-<form method="post" name="FormRegister"   class="flex justify-content-center ms-5 me-5 w-75">
+<form method="post"  class="flex justify-content-center p-5 bg-light">
     <div class="alert alert-danger" role="alert">
         ${sessionScope.error}
     </div>

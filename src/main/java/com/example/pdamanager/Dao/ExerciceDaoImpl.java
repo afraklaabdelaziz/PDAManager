@@ -1,6 +1,5 @@
 package com.example.pdamanager.Dao;
 
-import com.example.pdamanager.Entities.Activité;
 import com.example.pdamanager.Entities.Exercice;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -33,7 +32,6 @@ public class ExerciceDaoImpl implements InterfaceDao<Exercice> {
         entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("select e from Exercice e",Exercice.class);
-        entityManager.getTransaction().commit();
         return query.getResultList();
     }
 

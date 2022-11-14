@@ -13,9 +13,10 @@ EntityManager entityManager ;
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Query query =entityManager.createQuery("select u from User u where u.email = :email");
-        entityManager.getTransaction().commit();
+        Query query =entityManager.createQuery("select u from User u where u.email = :email",User.class);
         query.setParameter("email",email);
+        entityManager.getTransaction().commit();
         return (User) query.getSingleResult();
     }
+
 }

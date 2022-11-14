@@ -2,27 +2,26 @@ package com.example.pdamanager.Servlets;
 
 
 import com.example.pdamanager.Entities.*;
-import com.example.pdamanager.Services.AdresseServiceImpl;
+import com.example.pdamanager.Services.*;
 
 import com.example.pdamanager.Entities.Participant;
 import com.example.pdamanager.Entities.Responsable;
 import com.example.pdamanager.Entities.User;
 
-import com.example.pdamanager.Services.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register","/Choix"})
+@WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register","/Choix","/logout"})
 public class AuthServlet extends HttpServlet {
 
     UserServiceImpl userService=new UserServiceImpl();
-    AdresseServiceImpl adresseService=new AdresseServiceImpl();
-
-
-
+    InterfaceService adresseService=new AdresseServiceImpl();
+    InterfaceService villeService = new VilleServiceImpl();
+    InterfaceService paysService = new PaysServiceImpl();
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path=request.getServletPath();
@@ -43,6 +42,9 @@ public class AuthServlet extends HttpServlet {
             case ("/Choix"):
                 request.getRequestDispatcher("Choix.jsp").forward(request,response);
                 break;
+            case ("/logout") :
+                session.invalidate();
+                response.sendRedirect("/PDAManager_war_exploded/login");
         }
     }
 
@@ -92,8 +94,8 @@ public class AuthServlet extends HttpServlet {
                     ville.setPays(payss);
                     addres.setVille(ville);
                     addres.setCodePostal(code);
-                    adresseService.Add(payss);
-                    adresseService.Add(ville);
+                    paysService.Add(payss);
+                    villeService.Add(ville);
                     adresseService.Add(addres);
                     responsable.setAdresse(addres);
                     rolee.setId(2);
@@ -124,8 +126,8 @@ public class AuthServlet extends HttpServlet {
                     ville.setPays(payss);
                     addres.setVille(ville);
                     addres.setCodePostal(code);
-                    adresseService.Add(payss);
-                    adresseService.Add(ville);
+                    paysService.Add(payss);
+                    villeService.Add(ville);
                     adresseService.Add(addres);
                     participant.setAdresse(addres);
                     rolee.setId(3);
@@ -139,14 +141,25 @@ public class AuthServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 User  findEmail = (User) userService.findUserByEmail(email);
 
-                HttpSession sessionn = request.getSession();
                 if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)) {
-                    sessionn.setAttribute("name", findEmail.getNom());
-                    sessionn.setAttribute("prenom", findEmail.getPrenom());
-                    request.setAttribute("user", findEmail);
+                    session.setAttribute("email", findEmail.getEmail());
+                    session.setAttribute("user",findEmail);
+                    session.setAttribute("idVille",findEmail.getAdresse().getVille().getId());
+                    session.setAttribute("idPays",findEmail.getAdresse().getVille().getPays().getId());
+                    session.setAttribute("idAdresse",findEmail.getAdresse().getId());
                     Role roleUser = (Role) userService.findByID(findEmail.getRole().getId());
-                    sessionn.setAttribute("roleUser",roleUser.getNom());
-                    request.getRequestDispatcher("connect.jsp").forward(request, response);
+                    session.setAttribute("roleUser",roleUser.getNom());
+                    switch (roleUser.getNom()){
+                        case ("Admin") :
+                            response.sendRedirect("/PDAManager_war_exploded/listActivetes");
+                            break;
+                        case ("Responsable"):
+                            response.sendRedirect("/PDAManager_war_exploded/");
+                            break;
+                        case ("Participant") :
+                            response.sendRedirect("/PDAManager_war_exploded/dashboard");
+                            break;
+                    }
                 }else{
                     session.setAttribute("error","mot de passe ou email incorrect");
                     request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -1,5 +1,6 @@
 package com.example.pdamanager.Dao;
 
+import com.example.pdamanager.Entities.Adresse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -25,6 +26,7 @@ public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
         }
         finally {
             em.close();
+            Entity.close();
         }
     }
     public  void addVille(T t){
@@ -70,13 +72,34 @@ public class AdresseDaoImpl<T> implements  InterfaceDao<T> {
 
     @Override
     public void update(T t) {
-
+      EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+      em = emf.createEntityManager();
+      em.getTransaction().begin();
+      em.merge(t);
+      em.getTransaction().commit();
+        em.close();
+        emf.close();
     }
 
     @Override
 
     public T findById(Long id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Adresse adresse = new Adresse();
+        try {
+            adresse = em.find(Adresse.class, id);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
 
-        return null;
+            em.getTransaction().rollback();
+
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return (T) adresse;
     }
+
 }
