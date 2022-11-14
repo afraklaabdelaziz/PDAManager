@@ -15,7 +15,7 @@ public class DemandeServiceImpl implements InterfaceService<Demande>{
 
     @Override
     public void update(Demande demande) {
-
+      demandeDao.update(demande);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class DemandeServiceImpl implements InterfaceService<Demande>{
 
     @Override
     public Demande findByID(long id) {
-        return null;
+        return (Demande) demandeDao.findById(id);
     }
 }

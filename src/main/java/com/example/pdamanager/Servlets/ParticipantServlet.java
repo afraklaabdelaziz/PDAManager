@@ -1,9 +1,6 @@
 package com.example.pdamanager.Servlets;
 
-import com.example.pdamanager.Entities.Activité;
-import com.example.pdamanager.Entities.Demande;
-import com.example.pdamanager.Entities.Participant;
-import com.example.pdamanager.Entities.StatutDemande;
+import com.example.pdamanager.Entities.*;
 import com.example.pdamanager.Services.ActiveteServiceImpl;
 import com.example.pdamanager.Services.DemandeServiceImpl;
 import com.example.pdamanager.Services.InterfaceService;
@@ -42,12 +39,16 @@ public class ParticipantServlet extends HttpServlet {
         switch (path){
             case "/dashboard" :
                 String message = request.getParameter("message");
+                String emailResponsable = request.getParameter("emailResponsable");
                 Demande demande = new Demande();
                 demande.setMessage(message);
                 demande.setStatutDemande(StatutDemande.EnCours);
                 Participant participant = (Participant) userService.findUserByEmail((String) session.getAttribute("email"));
+                Responsable responsable = (Responsable) userService.findUserByEmail(emailResponsable);
                 demande.setParticipant(participant);
+                demande.setResponsable(responsable);
                 demandeService.Add(demande);
+                response.sendRedirect("/PDAManager_war_exploded/dashboard");
                 break;
         }
     }

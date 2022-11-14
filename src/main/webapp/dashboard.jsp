@@ -21,11 +21,8 @@
                 <p> <span class="fas fa-users"></span> Date de fin : ${activete.getDate_fin()} </p>
                 <p> <span class="fas fa-users"></span> Date Debut inscrir : ${activete.getDate_de_participation()} </p>
                 <p> <span class="fas fa-users"></span> Date Fin inscrir : ${activete.getDate_fin_participation()} </p>
-                <p>${year}</p>
                 <button <c:if test="${activete.getDate_fin_participation() <= year}" > </c:if> data-bs-toggle="modal" href="#envoyeeDemande" class="btn btn-primary p-2">Inscrir</button>
             </div>
-        </c:forEach>
-    </div>
 
 
     <!-- form add  -->
@@ -40,13 +37,15 @@
                             <input type="text" class="form-control" name="message" id="title">
                             <div class="error"></div>
                         </div>
-                        <input type="hidden" name="idResponsable" value="">
+                        <input type="hidden" name="emailResponsable" value="${activete.getResponsable().getEmail()}">
                         <input type="submit" class="form-control btn btns mt-4" value="Demander">
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </c:forEach>
     </div>
 </body>
 </html>
