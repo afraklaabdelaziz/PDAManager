@@ -1,41 +1,64 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.example.pdamanager.Entities.Exercice" %>
-
-l<%--
-  Created by IntelliJ IDEA.
-  User: Youcode
-  Date: 02/11/2022
-  Time: 18:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-  <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-          crossorigin="anonymous"
-  />
-  <title>ExerciceList</title>
+<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<mvc:resources location="/Asets/" mapping="/Asets/**"></mvc:resources>
+<jsp:include page="head.jsp"></jsp:include>
+<title>Title</title>
 </head>
 <body>
+<div>
+    <jsp:include page="side.jsp"></jsp:include>
+    <div class="d-flex justify-content-between mb-4">
+        <p class="h4">List Exercices</p>
+        <div class="btn btns" data-bs-toggle="modal" href="#addActivete">Ajouter Exercice</div>
+    </div>
 
-<ul>
- <%
-     List<Exercice> exercices=(List<Exercice>) request.getAttribute("exercices");
-  for (Exercice exercice : exercices ){%>
-    <li><%=exercice.getId()%></li>
-    <li> Année: <%= exercice.getAnnée() %></li>
-    <li>Date Début: <%=exercice.getDate_debut()%></li>
-    <li> Date Fin:<%=exercice.getDate_fin()%></li>
-    <li>Etat d'exercice: <%=exercice.getEtatExercice()%></li>
-    <a href="/updateExercice">update</a>
-<%--    <form action="/updateExercice" method="get">--%>
-<%--        <input type="hidden" name="id" value="<%=exercice.getId()%>">--%>
-<%--        <input type="submit" value="update">--%>
-<%--    </form>--%>
-</ul>
-<%}%>
+    <div class="d-flex flex-wrap gap-5">
+        <c:forEach items="${exercices}" var="exercice">
+            <div class="activite position-relative">
+                <p class="h5 nameClass mt-2">Type activité : ${exercice.getNom()}</p>
+                <p> <span class="fas fa-users"></span> Date : ${exercice.getDate_debut()} </p>
+                <p> <span class="fas fa-users"></span> Date : ${exercice.getDate_fin()} </p>
+                <p> <span class="fas fa-users"></span> Date : ${exercice.getAnnée()} </p>
+                <p> <span class="fas fa-users"></span> Date : ${exercice.getEtatExercice()} </p>
+                <a href="/PDAManager_war_exploded/updateExercice?id=${exercice.getId()}"><i class="fas fa-edit edite"></i></a>
+            </div>
+        </c:forEach>
+    </div>
+
+
+    <!-- form add  -->
+    <div class="modal fade" id="addActivete">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <form action="/PDAManager_war_exploded/Exercice" method="post" class="form-group w-100">
+                        <p class="h4">Ajouter activite</p>
+                        <div>
+                            <label for="title" class="label-control">Nom</label>
+                            <input type="text" class="form-control" name="nom" id="title">
+                            <div class="error"></div>
+                        </div>
+                        <div>
+                            <label for="dateD" class="label-control">date debut</label>
+                            <input type="date" class="form-control" name="debut" id="dateD">
+                            <div class="error"></div>
+                        </div>
+                        <div>
+                            <label for="dateFin" class="label-control">Date de fin </label>
+                            <input class="form-control" type="date" name="fin" id="dateFin">
+                            <div class="error"></div>
+                        </div>
+                        <div>
+                            <label for="dateDI" class="label-control">Année</label>
+                            <input type="date" class="form-control" name="anne" id="dateDI">
+                            <div class="error"></div>
+                        </div>
+                        <input type="submit" class="form-control btn btns mt-4" value="Ajouter">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
