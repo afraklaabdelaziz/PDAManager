@@ -18,7 +18,7 @@ public class ExerciceServiceImpl implements InterfaceService <Exercice>{
 
     @Override
     public void update(Exercice exercice) {
-
+    exerciceDao.update(exercice);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ExerciceServiceImpl implements InterfaceService <Exercice>{
 
     @Override
     public Exercice findByID(long id) {
-        return null;
+        return (Exercice) exerciceDao.findById(id);
     }
 
 }
