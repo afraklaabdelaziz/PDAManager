@@ -60,6 +60,7 @@ public class ExerciceServlet extends HttpServlet {
                 exercice.setDate_fin(fin);
                 exercice.setNom(nom);
                 exerciceService.Add(exercice);
+                break;
 
             case "/updateExercice":
                 LocalDate annee=LocalDate.parse( request.getParameter("annee"));
@@ -79,9 +80,11 @@ public class ExerciceServlet extends HttpServlet {
                         break;
                     case "Terminé":
                         exercice1.setEtatExercice(EtatExercice.Terminé);
+                        break;
                 }
                 exerciceService.update(exercice1);
                 response.sendRedirect("PDAManager_war_exploded/Exercice");
+                break;
         }
 
 
