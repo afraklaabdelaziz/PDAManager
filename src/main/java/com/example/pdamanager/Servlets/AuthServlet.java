@@ -154,7 +154,7 @@ public class AuthServlet extends HttpServlet {
                             response.sendRedirect("/PDAManager_war_exploded/listActivetes");
                             break;
                         case ("Responsable"):
-                            response.sendRedirect("/PDAManager_war_exploded/");
+                            response.sendRedirect("/PDAManager_war_exploded/Exercice");
                             break;
                         case ("Participant") :
                             response.sendRedirect("/PDAManager_war_exploded/dashboard");
