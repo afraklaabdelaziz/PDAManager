@@ -1,9 +1,7 @@
 package com.example.pdamanager.Servlets;
 
-import com.example.pdamanager.Entities.Activité;
-import com.example.pdamanager.Entities.EtatExercice;
-import com.example.pdamanager.Entities.Exercice;
-import com.example.pdamanager.Entities.TypeActivité;
+import com.example.pdamanager.Entities.*;
+import com.example.pdamanager.Repositories.DemandeRepoditoryImpl;
 import com.example.pdamanager.Services.ExerciceServiceImpl;
 import com.example.pdamanager.Services.InterfaceService;
 import jakarta.servlet.*;
@@ -15,12 +13,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(name = "ExerciceServlet", urlPatterns = {"/Exercice","/addExercice","/updateExercice"})
+@WebServlet(name = "ExerciceServlet", urlPatterns = {"/Exercice","/addExercice","/updateExercice","/demandes"})
 public class ExerciceServlet extends HttpServlet {
     InterfaceService exerciceService = new ExerciceServiceImpl();
+    DemandeRepoditoryImpl demandeRepoditory =  new DemandeRepoditoryImpl();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
+        HttpSession session = request.getSession();
         switch (path) {
             case ("/updateExercice"):
                 EtatExercice[] etatExercices = EtatExercice.values();
@@ -40,6 +41,12 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("/listExercice.jsp").forward(request,response);
                 System.out.println(exerciceService.getAll());
                 System.out.println(request.getAttribute("id"));
+                break;
+            case ("/demandes"):
+                List<Demande> demandes = demandeRepoditory.findDemandeByIdRespo((Long) session.getAttribute("idUser"));
+                request.setAttribute("demandesRes",demandes);
+                System.out.println(demandes.toString());
+                request.getRequestDispatcher("demande.jsp").forward(request,response);
                 break;
         }
     }
@@ -84,6 +91,17 @@ public class ExerciceServlet extends HttpServlet {
                 }
                 exerciceService.update(exercice1);
                 response.sendRedirect("PDAManager_war_exploded/Exercice");
+                break;
+            case ("/demandes") :
+                String statusDemande = request.getParameter("statut");
+                Participation participation = new Participation();
+                switch (statusDemande){
+                    case "accept":
+                        break;
+                    case "refuse":
+                        break;
+
+                }
                 break;
         }
 
