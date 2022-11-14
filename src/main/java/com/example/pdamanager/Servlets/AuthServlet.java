@@ -133,7 +133,7 @@ public class AuthServlet extends HttpServlet {
                     rolee.setId(3);
                     participant.setRole(rolee);
                     userService.Add(participant);
-                    response.sendRedirect("/login");
+                    response.sendRedirect("/PDAManager_war_exploded/login");
                 }
                 break;
             case ("/login"):
@@ -144,6 +144,7 @@ public class AuthServlet extends HttpServlet {
                 if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)) {
                     session.setAttribute("email", findEmail.getEmail());
                     session.setAttribute("user",findEmail);
+                    session.setAttribute("idUser",findEmail.getId());
                     session.setAttribute("idVille",findEmail.getAdresse().getVille().getId());
                     session.setAttribute("idPays",findEmail.getAdresse().getVille().getPays().getId());
                     session.setAttribute("idAdresse",findEmail.getAdresse().getId());
@@ -156,7 +157,7 @@ public class AuthServlet extends HttpServlet {
                         case ("Responsable"):
                             response.sendRedirect("/PDAManager_war_exploded/Exercice");
                             break;
-                        case ("Participant") :
+                        case ("participant") :
                             response.sendRedirect("/PDAManager_war_exploded/dashboard");
                             break;
                     }

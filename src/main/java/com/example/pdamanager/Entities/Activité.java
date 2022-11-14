@@ -34,6 +34,8 @@ public class Activité implements Serializable {
 
     @OneToMany(mappedBy = "activite")
     private List<Participation> participationList= new ArrayList<>();
+    @ManyToMany
+    private List<Exercice> exerciceList = new ArrayList<>();
 
     public  Activité(){}
 
@@ -135,5 +137,13 @@ public class Activité implements Serializable {
 
     public void setParticipationList(List<Participation> participationList) {
         this.participationList = participationList;
+    }
+
+    public List<Exercice> getExerciceList() {
+        return exerciceList;
+    }
+
+    public void setExerciceList(List<Exercice> exerciceList) {
+        this.exerciceList = exerciceList;
     }
 }

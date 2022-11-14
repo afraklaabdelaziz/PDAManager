@@ -16,6 +16,9 @@ public class Participant extends User implements Serializable {
     @OneToMany(mappedBy = "participant")
     private List<Participation> participationList= new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "participant")
+    private List<Demande> villes = new ArrayList<>();
+
      public  Participant(){}
 
     public Participant(long id, String nom, String prenom, String email, String phone, String password, Adresse adresse, List<Role> roles, String domaine, String structure, Genre genre, List<Participation> participationList) {

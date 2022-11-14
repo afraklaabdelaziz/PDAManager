@@ -21,17 +21,16 @@ public class Exercice implements Serializable {
     @Enumerated(EnumType.STRING)
     private  EtatExercice etatExercice;
 
-    @ManyToMany
-    private List<Activité> activitéList= new ArrayList<>();
     public Exercice(){}
 
-    public Exercice(Long id, LocalDate année, LocalDate date_debut, LocalDate date_fin, EtatExercice etatExercice, List<Activité> activitéList) {
+    public Exercice(Long id ) { this.id = id;}
+
+    public Exercice(Long id, LocalDate année, LocalDate date_debut, LocalDate date_fin, EtatExercice etatExercice) {
         this.id = id;
         Année = année;
         Date_debut = date_debut;
         Date_fin = date_fin;
         this.etatExercice = etatExercice;
-        this.activitéList = activitéList;
     }
 
     public Long getId() {
@@ -74,13 +73,6 @@ public class Exercice implements Serializable {
         this.etatExercice = etatExercice;
     }
 
-    public List<Activité> getActivitéList() {
-        return activitéList;
-    }
-
-    public void setActivitéList(List<Activité> activitéList) {
-        this.activitéList = activitéList;
-    }
 
     public String getNom() {
         return Nom;

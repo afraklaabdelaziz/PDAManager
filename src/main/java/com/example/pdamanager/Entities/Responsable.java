@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 @Entity
@@ -15,6 +16,9 @@ public class Responsable extends User implements Serializable {
 
     @OneToOne(mappedBy = "responsable")
     private Activité activité;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "responsable")
+    private List<Demande> demandes = new ArrayList<>();
 
     public Responsable(){
 

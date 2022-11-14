@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="head.jsp"></jsp:include>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate var="year" value="${now}" pattern="yyyy-MM-dd" />
     <title>Title</title>
 </head>
 <body>
@@ -18,9 +21,32 @@
                 <p> <span class="fas fa-users"></span> Date de fin : ${activete.getDate_fin()} </p>
                 <p> <span class="fas fa-users"></span> Date Debut inscrir : ${activete.getDate_de_participation()} </p>
                 <p> <span class="fas fa-users"></span> Date Fin inscrir : ${activete.getDate_fin_participation()} </p>
-                <button class="btn btn-primary p-2">Inscrir</button>
+                <p>${year}</p>
+                <button <c:if test="${activete.getDate_fin_participation() <= year}" > </c:if> data-bs-toggle="modal" href="#envoyeeDemande" class="btn btn-primary p-2">Inscrir</button>
             </div>
         </c:forEach>
+    </div>
+
+
+    <!-- form add  -->
+    <div class="modal fade" id="envoyeeDemande">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <form method="post" class="form-group w-100">
+                        <p class="h4">Demande de participation</p>
+                        <div>
+                            <label for="title" class="label-control">Message</label>
+                            <input type="text" class="form-control" name="message" id="title">
+                            <div class="error"></div>
+                        </div>
+                        <input type="hidden" name="idResponsable" value="">
+                        <input type="submit" class="form-control btn btns mt-4" value="Demander">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 </html>
