@@ -69,6 +69,7 @@ public class ActiveteServlet extends HttpServlet {
             request.getRequestDispatcher("adminProfile.jsp").forward(request,response);
             break;
     }
+
     }
 
     @Override
