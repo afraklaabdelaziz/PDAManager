@@ -144,6 +144,7 @@ public class AuthServlet extends HttpServlet {
                 if (findEmail.getEmail().equals(email) && findEmail.getPassword().equals(password)) {
                     session.setAttribute("email", findEmail.getEmail());
                     session.setAttribute("user",findEmail);
+                    session.setAttribute("idUser",findEmail.getId());
                     session.setAttribute("idVille",findEmail.getAdresse().getVille().getId());
                     session.setAttribute("idPays",findEmail.getAdresse().getVille().getPays().getId());
                     session.setAttribute("idAdresse",findEmail.getAdresse().getId());

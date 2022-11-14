@@ -68,7 +68,7 @@
 
                     <div>
                         <label for="exrcice" class="label-control" >Choisir type activite</label>
-                        <select class="form-select" size="3" name="exercices" multiple="" id="exrcice">
+                        <select class="form-select" size="3" name="exercices" multiple="multiple" id="exrcice">
                             <c:forEach items="${exercices}" var="exercice">
                                 <option value="${exercice.getId()}">${exercice.getNom()}</option>
                             </c:forEach>
