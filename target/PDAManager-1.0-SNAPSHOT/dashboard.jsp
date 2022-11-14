@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="head.jsp"></jsp:include>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate var="year" value="${now}" pattern="yyyy-MM-dd" />
     <title>Title</title>
 </head>
 <body>
@@ -18,7 +21,8 @@
                 <p> <span class="fas fa-users"></span> Date de fin : ${activete.getDate_fin()} </p>
                 <p> <span class="fas fa-users"></span> Date Debut inscrir : ${activete.getDate_de_participation()} </p>
                 <p> <span class="fas fa-users"></span> Date Fin inscrir : ${activete.getDate_fin_participation()} </p>
-                <button class="btn btn-primary p-2">Inscrir</button>
+                <p>${year}</p>
+                <button <c:if test="${activete.getDate_fin_participation() <= year}" > disabled </c:if> class="btn btn-primary p-2">Inscrir</button>
             </div>
         </c:forEach>
     </div>

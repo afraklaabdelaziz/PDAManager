@@ -133,7 +133,7 @@ public class AuthServlet extends HttpServlet {
                     rolee.setId(3);
                     participant.setRole(rolee);
                     userService.Add(participant);
-                    response.sendRedirect("/login");
+                    response.sendRedirect("/PDAManager_war_exploded/login");
                 }
                 break;
             case ("/login"):
@@ -156,7 +156,7 @@ public class AuthServlet extends HttpServlet {
                         case ("Responsable"):
                             response.sendRedirect("/PDAManager_war_exploded/");
                             break;
-                        case ("Participant") :
+                        case ("participant") :
                             response.sendRedirect("/PDAManager_war_exploded/dashboard");
                             break;
                     }
