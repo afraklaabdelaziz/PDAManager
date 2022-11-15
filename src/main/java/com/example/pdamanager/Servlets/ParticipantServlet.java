@@ -1,10 +1,7 @@
 package com.example.pdamanager.Servlets;
 
 import com.example.pdamanager.Entities.*;
-import com.example.pdamanager.Services.ActiveteServiceImpl;
-import com.example.pdamanager.Services.DemandeServiceImpl;
-import com.example.pdamanager.Services.InterfaceService;
-import com.example.pdamanager.Services.UserServiceImpl;
+import com.example.pdamanager.Services.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -17,6 +14,7 @@ public class ParticipantServlet extends HttpServlet {
     InterfaceService activeteService = new ActiveteServiceImpl();
     InterfaceService demandeService = new DemandeServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
+    InterfaceService participantService=new ParticipationServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      String path = request.getServletPath();

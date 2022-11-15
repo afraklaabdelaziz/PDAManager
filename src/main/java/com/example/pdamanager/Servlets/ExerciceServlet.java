@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(name = "ExerciceServlet", urlPatterns = {"/Exercice","/addExercice","/updateExercice","/demandes"})
+@WebServlet(name = "ExerciceServlet", urlPatterns = {"/Exercice","/addExercice","/updateExercice","/demandes","/listParticipant"})
 public class ExerciceServlet extends HttpServlet {
     InterfaceService exerciceService = new ExerciceServiceImpl();
     DemandeRepoditoryImpl demandeRepoditory =  new DemandeRepoditoryImpl();
@@ -22,6 +22,7 @@ public class ExerciceServlet extends HttpServlet {
     InterfaceService participationService = new ParticipationServiceImpl();
     InterfaceService demandeService = new DemandeServiceImpl();
     ActiveteRepositoryImpl activeteRepository = new ActiveteRepositoryImpl();
+    ParticipantServiceImpl participantService = new ParticipantServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,9 +54,15 @@ public class ExerciceServlet extends HttpServlet {
                 System.out.println(demandes.toString());
                 request.getRequestDispatcher("demande.jsp").forward(request,response);
                 break;
+            case ("/listParticipant"):
+                List<Participant> participants = participantService.findParticipantByActivite(1L,1L);
+                request.setAttribute("participants",participants);
+                request.getRequestDispatcher("/listParticipant.jsp").forward(request,response);
+                //System.out.println(participantService.findParticipantByActivite(1L,8L));
+                break;
         }
     }
-    @Override
+    @Overridecd 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
         HttpSession session = request.getSession();

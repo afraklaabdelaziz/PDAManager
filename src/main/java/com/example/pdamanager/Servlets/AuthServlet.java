@@ -66,6 +66,7 @@ public class AuthServlet extends HttpServlet {
                 String code=request.getParameter("code");
                 String typeRes = request.getParameter("typeResponsable") ;
                 String domaine=request.getParameter("domaine");
+                String structure=request.getParameter("structure");
                 String genre = request.getParameter("genre");
                 Adresse addres=new Adresse();
                 Pays payss=new Pays();
@@ -110,6 +111,8 @@ public class AuthServlet extends HttpServlet {
                     participant.setEmail(Email);
                     participant.setPhone(Phone);
                     participant.setPassword(Password);
+                    participant.setDomaine(domaine);
+                    participant.setStructure(structure);
 
                     switch (genre){
                         case "Homme" :
