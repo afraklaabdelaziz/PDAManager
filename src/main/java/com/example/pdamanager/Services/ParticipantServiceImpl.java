@@ -8,8 +8,8 @@ import java.util.List;
 
 public class ParticipantServiceImpl  {
     ParticipantRepositoryImpl participantRepository = new ParticipantRepositoryImpl();
-    public List<Participant> findParticipantByActivite(Long idActivite , Long idParticipant){
-        return participantRepository.findParticipantById(idActivite,idParticipant);
+    public List<Participant> findParticipantByActivite(Long idActivite){
+        return participantRepository.findParticipantById(idActivite);
     }
 
     public Participant findParticiByIdActivete(Long idActivite){

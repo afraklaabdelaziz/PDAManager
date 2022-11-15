@@ -7,6 +7,7 @@
 <body>
 <div>
     <jsp:include page="sideRes.jsp"></jsp:include>
+<<<<<<< HEAD
     <div>
         <span>Mon activité</span>
         <div class="activite" >
@@ -17,10 +18,23 @@
             <p> <span class="fas fa-users"></span> Date de fin : ${activiteRes.getDate_fin()} </p>
             <p> <span class="fas fa-users"></span> Date Debut inscrir : ${activiteRes.getDate_de_participation()} </p>
             <p> <span class="fas fa-users"></span> Date Fin inscrir : ${activiteRes.getDate_fin_participation()} </p>
+=======
+    <div class="">
+        <h3 class="">Mon activité</h3>
+        <div class="d-flex w-100 justify-content-center" >
+            <div class="activite">
+                <p class="h5 nameClass mt-2">Type activité : ${activiteRes.getTypeActivité()}</p>
+                <p <c:if test="${activiteRes.getEtatActivité() == 'Active'}" >class="text-success" </c:if> <c:if test="${activiteRes.getEtatActivité() == 'Desactive'}" >class="text-danger"</c:if> > <span class="fas fa-users"></span> Etat Activité : ${activete.getEtatActivité()}</p>
+                <p> <span class="fas fa-users"></span> Responsable : ${activiteRes.getResponsable().getNom()} ${activiteRes.getResponsable().getPrenom()} </p>
+                <p> <span class="fas fa-users"></span> Date de Debut : ${activiteRes.getDate_debut()} </p>
+                <p> <span class="fas fa-users"></span> Date de fin : ${activiteRes.getDate_fin()} </p>
+                <p> <span class="fas fa-users"></span> Date Debut inscrir : ${activiteRes.getDate_de_participation()} </p>
+                <p> <span class="fas fa-users"></span> Date Fin inscrir : ${activiteRes.getDate_fin_participation()} </p>
+            </div>
+>>>>>>> main
         </div>
     </div>
-<div class="d-flex flex-wrap gap-5 m-4">
-
+<div class="">
     <div class="d-flex justify-content-between mb-4">
         <p class="h4">List Exercices</p>
         <div class="btn btns" data-bs-toggle="modal" href="#addActivete">Ajouter Exercice</div>

@@ -1,5 +1,6 @@
 package com.example.pdamanager.Repositories;
 
+import com.example.pdamanager.Entities.Genre;
 import com.example.pdamanager.Entities.Participant;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -10,13 +11,12 @@ import java.util.List;
 
 public class ParticipantRepositoryImpl {
     EntityManager entityManager;
-    public List<Participant> findParticipantById(Long idActivite , Long idParticipant){
+    public List<Participant> findParticipantById(Long idActivite){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("select p from Participant p , Participation pa ,Activité a where pa.participant.id = p.id and pa.activite.id = a.id and a.id = :activ and p.id = :partici ");
+        Query query = entityManager.createQuery("select p from Participant p , Participation pa ,Activité a where pa.participant.id = p.id and pa.activite.id = a.id and a.id = :activ");
         query.setParameter("activ",idActivite);
-        query.setParameter("partici",idParticipant);
         return query.getResultList();
     }
 
@@ -27,5 +27,13 @@ public class ParticipantRepositoryImpl {
         Query query = entityManager.createQuery("select p from Participant p ,Participation pa where pa.participant.id = p.id and pa.activite.id = :idActivite");
         query.setParameter("idActivite",idActivite);
         return (Participant) query.getSingleResult();
+    }
+    public Participant findParticipantByGenre( String Genre){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query=entityManager.createQuery("select p from Participant p where p.genre=:genre");
+        query.setParameter("genre",Genre);
+        return (Participant) query.getResultList();
     }
 }
