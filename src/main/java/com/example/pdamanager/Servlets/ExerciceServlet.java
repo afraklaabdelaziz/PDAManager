@@ -54,10 +54,11 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("demande.jsp").forward(request,response);
                 break;
             case ("/listParticipant"):
-                List<Participant> participants = participantService.findParticipantByActivite(1L,1L);
+               Activité activitee = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                Participant participant = participantService.findParticiByIdActivete(activitee.getId());
+                List<Participant> participants = participantService.findParticipantByActivite(activitee.getId(),participant.getId());
                 request.setAttribute("participants",participants);
                 request.getRequestDispatcher("/listParticipant.jsp").forward(request,response);
-                //System.out.println(participantService.findParticipantByActivite(1L,8L));
                 break;
         }
     }
