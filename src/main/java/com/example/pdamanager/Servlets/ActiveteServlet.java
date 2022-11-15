@@ -74,6 +74,8 @@ public class ActiveteServlet extends HttpServlet {
             request.getRequestDispatcher("adminProfile.jsp").forward(request,response);
             break;
         case ("/participantList") :
+            List<Participant> participants = participantService.findAllParticipant();
+            request.setAttribute("participantList",participants);
             request.getRequestDispatcher("participantList").forward(request,response);
     }
 

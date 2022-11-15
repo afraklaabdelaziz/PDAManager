@@ -15,4 +15,8 @@ public class ParticipantServiceImpl  {
     public Participant findParticiByIdActivete(Long idActivite){
         return participantRepository.findParticipantByIDActivete(idActivite);
     }
+
+    public List<Participant> findAllParticipant(){
+        return participantRepository.findAllParticipant();
+    }
 }
