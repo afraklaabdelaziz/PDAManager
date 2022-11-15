@@ -53,6 +53,8 @@ public class ExerciceServlet extends HttpServlet {
             case ("/listParticipant"):
                Activité activitee = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
                 List<Participant> participants = participantService.findParticipantByActivite(activitee.getId());
+                List<Participant> participantGenre=participantService.findParticipantByGenre(activitee.getId(), (Genre) session.getAttribute("genre"));
+                request.setAttribute("participantGenre",participantGenre);
                 request.setAttribute("participants",participants);
                 request.getRequestDispatcher("/listParticipant.jsp").forward(request,response);
                 break;
@@ -131,6 +133,11 @@ public class ExerciceServlet extends HttpServlet {
 
                 }
                 break;
+            case "/listParticipant":
+                Genre genre= Genre.valueOf(request.getParameter("genre"));
+                session.setAttribute("genre",genre);
+                response.sendRedirect("/PDAMAanager_war_exploded/listParticipant");
+
         }
 
 
