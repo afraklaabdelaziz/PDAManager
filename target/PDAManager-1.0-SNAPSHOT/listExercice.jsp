@@ -9,7 +9,7 @@
     <jsp:include page="sideRes.jsp"></jsp:include>
     <div>
         <span>Mon activité</span>
-        <div class="activite" style="margin-right: -50px">
+        <div class="activite" >
             <p class="h5 nameClass mt-2">Type activité : ${activiteRes.getTypeActivité()}</p>
             <p <c:if test="${activiteRes.getEtatActivité() == 'Active'}" >class="text-success" </c:if> <c:if test="${activiteRes.getEtatActivité() == 'Desactive'}" >class="text-danger"</c:if> > <span class="fas fa-users"></span> Etat Activité : ${activete.getEtatActivité()}</p>
             <p> <span class="fas fa-users"></span> Responsable : ${activiteRes.getResponsable().getNom()} ${activiteRes.getResponsable().getPrenom()} </p>
