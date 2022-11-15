@@ -55,14 +55,15 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("demande.jsp").forward(request,response);
                 break;
             case ("/listParticipant"):
-                List<Participant> participants = participantService.findParticipantByActivite(1L,1L);
+               Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                Participant participant = participantService.findParticiByIdActivete(activite.getId());
+                List<Participant> participants = participantService.findParticipantByActivite(activite.getId(),participant.getId());
                 request.setAttribute("participants",participants);
                 request.getRequestDispatcher("/listParticipant.jsp").forward(request,response);
-                //System.out.println(participantService.findParticipantByActivite(1L,8L));
                 break;
         }
     }
-    @Overridecd 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
         HttpSession session = request.getSession();
