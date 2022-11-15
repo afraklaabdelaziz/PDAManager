@@ -41,12 +41,11 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("addExercice.jsp").forward(request, response);
                 break;
             case ("/Exercice"):
-                System.out.println(request.getParameter("id"));
                 List<Exercice> exercices = exerciceService.getAll();
+                Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                request.setAttribute("activiteRes",activite);
                 request.setAttribute("exercices",exercices);
                 request.getRequestDispatcher("/listExercice.jsp").forward(request,response);
-                System.out.println(exerciceService.getAll());
-                System.out.println(request.getAttribute("id"));
                 break;
             case ("/demandes"):
                 List<Demande> demandes = demandeRepoditory.findDemandeByIdRespo((Long) session.getAttribute("idUser"));
@@ -55,9 +54,9 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("demande.jsp").forward(request,response);
                 break;
             case ("/listParticipant"):
-               Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
-                Participant participant = participantService.findParticiByIdActivete(activite.getId());
-                List<Participant> participants = participantService.findParticipantByActivite(activite.getId(),participant.getId());
+               Activité activitee = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                Participant participant = participantService.findParticiByIdActivete(activitee.getId());
+                List<Participant> participants = participantService.findParticipantByActivite(activitee.getId(),participant.getId());
                 request.setAttribute("participants",participants);
                 request.getRequestDispatcher("/listParticipant.jsp").forward(request,response);
                 break;
