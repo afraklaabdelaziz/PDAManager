@@ -45,4 +45,12 @@ public class ParticipantRepositoryImpl {
         query.setParameter("genre",genre);
         return (List<Participant>) query.getResultList();
     }
+
+    public List<Participant> findAllParticipant(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query=entityManager.createQuery("select p from Participant p,Participation pa where pa.participant.id = p.id");
+        return (List<Participant>) query.getResultList();
+    }
 }
