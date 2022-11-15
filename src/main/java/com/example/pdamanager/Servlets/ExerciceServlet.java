@@ -1,9 +1,10 @@
 package com.example.pdamanager.Servlets;
 
 import com.example.pdamanager.Entities.*;
+import com.example.pdamanager.Repositories.ActiveteRepositoryImpl;
 import com.example.pdamanager.Repositories.DemandeRepoditoryImpl;
-import com.example.pdamanager.Services.ExerciceServiceImpl;
-import com.example.pdamanager.Services.InterfaceService;
+import com.example.pdamanager.Repositories.UserRepositoryImpl;
+import com.example.pdamanager.Services.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -17,6 +18,10 @@ import java.util.Objects;
 public class ExerciceServlet extends HttpServlet {
     InterfaceService exerciceService = new ExerciceServiceImpl();
     DemandeRepoditoryImpl demandeRepoditory =  new DemandeRepoditoryImpl();
+    UserServiceImpl userService = new UserServiceImpl();
+    InterfaceService participationService = new ParticipationServiceImpl();
+    InterfaceService demandeService = new DemandeServiceImpl();
+    ActiveteRepositoryImpl activeteRepository = new ActiveteRepositoryImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,6 +58,7 @@ public class ExerciceServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
+        HttpSession session = request.getSession();
         switch (path){
             case "/Exercice":
                 LocalDate an=LocalDate.parse( request.getParameter("anne"));
@@ -94,11 +100,29 @@ public class ExerciceServlet extends HttpServlet {
                 break;
             case ("/demandes") :
                 String statusDemande = request.getParameter("statut");
+                String  email = request.getParameter("email");
+                Long id = Long.parseLong(request.getParameter("id"));
                 Participation participation = new Participation();
                 switch (statusDemande){
                     case "accept":
+                     Participant participant = (Participant) userService.findUserByEmail(email);
+                     Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                     System.out.println(activite.getId());
+                     participation.setActivite(activite);
+                     participation.setParticipant(participant);
+                     participation.setStatut(Statut.Present);
+                     participationService.Add(participation);
+                     Demande demande = (Demande) demandeService.findByID(id);
+                     demande.setStatutDemande(StatutDemande.Accepte);
+                     demandeService.update(demande);
+                     response.sendRedirect("/PDAManager_war_exploded/demandes");
                         break;
                     case "refuse":
+                        Demande demande1 = (Demande) demandeService.findByID(id);
+                        demandeService.findByID(id);
+                        demande1.setStatutDemande(StatutDemande.Refusee);
+                        demandeService.update(demande1);
+                        response.sendRedirect("/PDAManager_war_exploded/demandes");
                         break;
 
                 }
