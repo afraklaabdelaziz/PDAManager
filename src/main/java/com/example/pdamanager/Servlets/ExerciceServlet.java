@@ -41,12 +41,11 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("addExercice.jsp").forward(request, response);
                 break;
             case ("/Exercice"):
-                System.out.println(request.getParameter("id"));
                 List<Exercice> exercices = exerciceService.getAll();
+                Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                request.setAttribute("activiteRes",activite);
                 request.setAttribute("exercices",exercices);
                 request.getRequestDispatcher("/listExercice.jsp").forward(request,response);
-                System.out.println(exerciceService.getAll());
-                System.out.println(request.getAttribute("id"));
                 break;
             case ("/demandes"):
                 List<Demande> demandes = demandeRepoditory.findDemandeByIdRespo((Long) session.getAttribute("idUser"));
@@ -62,7 +61,7 @@ public class ExerciceServlet extends HttpServlet {
                 break;
         }
     }
-    @Overridecd 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
         HttpSession session = request.getSession();

@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="side.jsp"></jsp:include>
+<jsp:include page="sideRes.jsp"></jsp:include>
 
 <div class="d-flex flex-wrap gap-5">
     <c:forEach items="${participants}" var="participant">
