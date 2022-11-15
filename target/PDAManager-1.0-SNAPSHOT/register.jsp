@@ -48,7 +48,7 @@
     <div class="mb-3 d-flex gap-3">
         <div class="col-6">
             <label class="form-label">Domain</label>
-            <input type="text" class="form-control" name="domaineP" >
+            <input type="text" class="form-control" name="domaine" >
         </div>
         <div class="col-6">
             <label class="form-label">Structure</label>
