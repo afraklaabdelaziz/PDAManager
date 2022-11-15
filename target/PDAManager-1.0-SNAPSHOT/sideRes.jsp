@@ -7,16 +7,21 @@
             <span class="text-info name d-none d-md-inline  name">Responsable</span>
         </div>
     </div>
-
     <ul class="list-group">
 
         <li class="list-group-item">
-            <a  class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/listActivetes">
-                <i class="fas fa-home pe-3"></i>
-                <span class="fw-bold name d-none d-md-inline">Dashboard</span>
+            <a class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/Exercice">
+                <i class="fas fa-graduation-cap pe-3"></i>
+                <span class="fw-bold text-white name d-none d-md-inline">Exercices</span>
             </a>
         </li>
 
+        <li class="list-group-item">
+            <a  class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/demandes">
+                <i class="fas fa-home pe-3"></i>
+                <span class="fw-bold name d-none d-md-inline">Demandes</span>
+            </a>
+        </li>
 
         <li class="list-group-item">
             <a class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/listParticipant">
@@ -24,14 +29,12 @@
                 <span class="fw-bold text-white name d-none d-md-inline">Participants</span>
             </a>
         </li>
-
         <li class="list-group-item">
             <a class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/profile">
                 <i class="fas fa-graduation-cap pe-3"></i>
                 <span class="fw-bold text-white name d-none d-md-inline">Profile</span>
             </a>
         </li>
-
 
 
 
