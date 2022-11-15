@@ -47,6 +47,5 @@
 
 <div class="px-1 active-cont">
     <header class="position-sticky bg-light top-0 w-100">
-        <i class="btn fas fa-hand-point-right"></i>
     </header>
 

@@ -129,13 +129,12 @@ public class ExerciceServlet extends HttpServlet {
                         demandeService.update(demande1);
                         response.sendRedirect("/PDAManager_war_exploded/demandes");
                         break;
-
                 }
                 break;
             case "/listParticipant":
                 Genre genre= Genre.valueOf(request.getParameter("genre"));
                 session.setAttribute("genre",genre);
-                response.sendRedirect("/PDAMAanager_war_exploded/listParticipant");
+                response.sendRedirect("/PDAManager_war_exploded/listParticipant");
 
         }
 

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
+>>>>>>> main
 <%--
   Created by IntelliJ IDEA.
   User: Youcode
@@ -13,6 +16,7 @@
 <body>
 <div>
     <jsp:include page="side.jsp"></jsp:include>
+<<<<<<< HEAD
         <div class="position-sticky top-0">
             <form method="post">
                 <button value="Homme" type="submit" name="genre">Homme</button>
@@ -48,6 +52,10 @@
 
 
 <%--            <c:if test ="${empty sessionScope.genre}">--%>
+=======
+
+        <div class="d-flex flex-wrap gap-5">
+>>>>>>> main
             <c:forEach items="${participantList}" var="participant">
                 <div class="activite position-relative">
                     <p> <span class="fas fa-users"></span> ${participant.getNom()} </p>
@@ -59,7 +67,10 @@
                     <p> <span class="fas fa-users"></span> ${participant.getGenre()} </p>
                 </div>
             </c:forEach>
+<<<<<<< HEAD
 <%--                </c:if>--%>
+=======
+>>>>>>> main
 </div>
 
 </body>

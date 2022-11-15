@@ -9,6 +9,7 @@
     <form method="post">
         <button value="Homme" type="submit" name="genre">Homme</button>
         <button value="Femme" type="submit" name="genre">Femme</button>
+        <button value="All" type="submit">All</button>
     </form>
 </div>
 <div class="d-flex flex-wrap gap-5">
@@ -26,8 +27,7 @@
     </c:forEach>
     </c:if>
 
-    <c:if test="${empty sessionScope.genre}" ><c:forEach items="${participantGenre}" var="participant">
-
+    <c:if test="${empty sessionScope.genre}" ><c:forEach items="${participants}" var="participant">
         <div class="activite position-relative">
             <p> <span class="fas fa-users"></span> ${participant.getNom()} </p>
             <p> <span class="fas fa-users"></span> ${participant.getPrenom()} </p>
