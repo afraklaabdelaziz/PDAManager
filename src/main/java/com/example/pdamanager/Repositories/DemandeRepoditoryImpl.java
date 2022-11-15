@@ -16,7 +16,7 @@ public class DemandeRepoditoryImpl {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("select d from Demande d where d.responsable.id = :resp");
+        Query query = entityManager.createQuery("select d from Demande d where d.responsable.id = :resp AND d.statutDemande = 'EnCours'");
         query.setParameter("resp",idResponsable);
         return query.getResultList();
     }
