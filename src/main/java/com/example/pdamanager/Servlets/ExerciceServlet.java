@@ -3,7 +3,6 @@ package com.example.pdamanager.Servlets;
 import com.example.pdamanager.Entities.*;
 import com.example.pdamanager.Repositories.ActiveteRepositoryImpl;
 import com.example.pdamanager.Repositories.DemandeRepoditoryImpl;
-import com.example.pdamanager.Repositories.UserRepositoryImpl;
 import com.example.pdamanager.Services.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -11,18 +10,18 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import java.util.List;;
 
 @WebServlet(name = "ExerciceServlet", urlPatterns = {"/Exercice","/addExercice","/updateExercice","/demandes","/listParticipant"})
 public class ExerciceServlet extends HttpServlet {
-    InterfaceService exerciceService = new ExerciceServiceImpl();
+    ExerciceServiceImpl exerciceService = new ExerciceServiceImpl();
     DemandeRepoditoryImpl demandeRepoditory =  new DemandeRepoditoryImpl();
     UserServiceImpl userService = new UserServiceImpl();
     InterfaceService participationService = new ParticipationServiceImpl();
     InterfaceService demandeService = new DemandeServiceImpl();
     ActiveteRepositoryImpl activeteRepository = new ActiveteRepositoryImpl();
     ParticipantServiceImpl participantService = new ParticipantServiceImpl();
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,8 +37,8 @@ public class ExerciceServlet extends HttpServlet {
                 request.getRequestDispatcher("updateExercice.jsp").forward(request, response);
                 break;
             case ("/Exercice"):
-                List<Exercice> exercices = exerciceService.getAll();
                 Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
+                List<Exercice> exercices = exerciceService.findExrciceByActivite(activite.getId());
                 request.setAttribute("activiteRes",activite);
                 request.setAttribute("exercices",exercices);
                 request.getRequestDispatcher("/listExercice.jsp").forward(request,response);

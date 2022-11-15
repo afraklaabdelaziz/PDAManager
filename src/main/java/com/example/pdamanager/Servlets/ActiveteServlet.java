@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/profile","/participantList"})
+@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/profile","/participantList","/partcipantsListe"})
 public class ActiveteServlet extends HttpServlet {
 
     TypeActivité typeActivité;
@@ -27,6 +27,7 @@ public class ActiveteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
+    HttpSession session = request.getSession();
     switch (path){
         case ("/updateActivete"):
             TypeActivité [] typeActivitesUp = TypeActivité.values();
@@ -74,9 +75,30 @@ public class ActiveteServlet extends HttpServlet {
             request.getRequestDispatcher("adminProfile.jsp").forward(request,response);
             break;
         case ("/participantList") :
-            List<Participant> participants = participantService.findAllParticipant();
-            request.setAttribute("participantList",participants);
-            request.getRequestDispatcher("participantList").forward(request,response);
+            Genre genre = (Genre) session.getAttribute("genre");
+            String idActivite = request.getParameter("activite");
+            System.out.println(idActivite);
+            if(idActivite != null ){
+                if (idActivite.equals("all")){
+                    List<Participant> participants = participantService.findAllParticipant();
+                    request.setAttribute("participantList",participants);
+                }else {
+                    List<Participant> participantList = participantService.findParticipantByActivite(Long.parseLong(idActivite));
+                    request.setAttribute("participantList",participantList);
+                }
+            }
+            if(genre == Genre.Femme || genre == Genre.Homme){
+                List<Participant> participantsGenre = participantService.findParticipantByGenre((Genre)session.getAttribute("genre"));
+                request.setAttribute("participantList",participantsGenre);
+            }
+            else{
+                List<Participant> participants = participantService.findAllParticipant();
+                request.setAttribute("participantList",participants);
+            }
+            List<Activité> activiteList = activeteService.getAll();
+            request.setAttribute("activeties",activiteList);
+
+            request.getRequestDispatcher("participantList.jsp").forward(request,response);
     }
 
     }
@@ -193,6 +215,12 @@ public class ActiveteServlet extends HttpServlet {
                 userService.update(user);
                 response.sendRedirect("/PDAManager_war_exploded/profile");
                 break;
+            case "/participantList" :
+                Genre genre = Genre.valueOf(request.getParameter("genre"));
+                session.setAttribute("genre",genre);
+                response.sendRedirect("/PDAManager_war_exploded/participantList");
+                break;
+
         }
 
 
