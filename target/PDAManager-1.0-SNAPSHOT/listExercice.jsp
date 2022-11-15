@@ -21,6 +21,7 @@
 =======
     <div class="">
         <h3 class="">Mon activité</h3>
+        <div class="btn btns" data-bs-toggle="modal" href="#addActivete">Ajouter Exercice</div>
         <div class="d-flex w-100 justify-content-center" >
             <div class="activite">
                 <p class="h5 nameClass mt-2">Type activité : ${activiteRes.getTypeActivité()}</p>
@@ -37,7 +38,6 @@
 <div class="">
     <div class="d-flex justify-content-between mb-4">
         <p class="h4">List Exercices</p>
-        <div class="btn btns" data-bs-toggle="modal" href="#addActivete">Ajouter Exercice</div>
     </div>
 
     <div class="d-flex flex-wrap gap-5">

@@ -25,7 +25,6 @@
 <div class="">
     <div class="d-flex justify-content-between mb-4">
         <p class="h4">List Exercices</p>
-
     </div>
 
     <div class="d-flex flex-wrap gap-5">
