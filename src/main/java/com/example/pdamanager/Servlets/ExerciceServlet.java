@@ -37,9 +37,6 @@ public class ExerciceServlet extends HttpServlet {
                 request.setAttribute("exercice",execice1);
                 request.getRequestDispatcher("updateExercice.jsp").forward(request, response);
                 break;
-            case ("/addExercice"):
-                request.getRequestDispatcher("addExercice.jsp").forward(request, response);
-                break;
             case ("/Exercice"):
                 List<Exercice> exercices = exerciceService.getAll();
                 Activité activite = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
@@ -55,8 +52,7 @@ public class ExerciceServlet extends HttpServlet {
                 break;
             case ("/listParticipant"):
                Activité activitee = activeteRepository.findActiviteByResponsblaID((Long) session.getAttribute("idUser"));
-                Participant participant = participantService.findParticiByIdActivete(activitee.getId());
-                List<Participant> participants = participantService.findParticipantByActivite(activitee.getId(),participant.getId());
+                List<Participant> participants = participantService.findParticipantByActivite(activitee.getId());
                 request.setAttribute("participants",participants);
                 request.getRequestDispatcher("/listParticipant.jsp").forward(request,response);
                 break;
@@ -80,6 +76,7 @@ public class ExerciceServlet extends HttpServlet {
                 exercice.setDate_fin(fin);
                 exercice.setNom(nom);
                 exerciceService.Add(exercice);
+                response.sendRedirect("/PDAManager_war_exploded/Exercice");
                 break;
 
             case "/updateExercice":

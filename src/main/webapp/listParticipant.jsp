@@ -13,7 +13,7 @@
             <p> <span class="fas fa-users"></span> ${participant.getPrenom()} </p>
             <p> <span class="fas fa-users"></span> ${participant.getEmail()} </p>
             <p> <span class="fas fa-users"></span> ${participant.getPhone()} </p>
-            <p class="h5 nameClass mt-2"> ${participant.getDomaine()}</p>
+            <p class="h5  mt-2"> ${participant.getDomaine()}</p>
             <p> <span class="fas fa-users"></span>  ${participant.getStructure()} </p>
             <p> <span class="fas fa-users"></span> ${participant.getGenre()} </p>
         </div>
