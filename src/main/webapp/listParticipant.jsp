@@ -9,6 +9,7 @@
     <form method="post">
         <button value="Homme" type="submit" name="genre">Homme</button>
         <button value="Femme" type="submit" name="genre">Femme</button>
+        <button value="All" type="submit">All</button>
     </form>
 </div>
 <div class="d-flex flex-wrap gap-5">
