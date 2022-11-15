@@ -1,7 +1,6 @@
 package com.example.pdamanager.Entities;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -78,7 +77,6 @@ public class Exercice implements Serializable {
     public String getNom() {
         return Nom;
     }
-
     public void setNom(String nom) {
         Nom = nom;
     }

@@ -1,10 +1,8 @@
 package com.example.pdamanager.Entities;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
