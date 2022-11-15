@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="head.jsp"></jsp:include>
+
     <title>Register</title>
 </head>
-<body class="d-flex justify-content-center align-items-center">
-
+<body class="d-flex flex-column justify-content-center align-items-center">
+<a href="/PDAManager_war_exploded/Choix">Register</a>
 <form method="post"  class="flex justify-content-center p-5 bg-light">
-    <div class="alert alert-danger" role="alert">
+    <div class="text-danger">
         ${sessionScope.error}
     </div>
     <div class="mb-3">

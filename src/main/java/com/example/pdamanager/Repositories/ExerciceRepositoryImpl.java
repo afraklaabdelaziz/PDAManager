@@ -1,8 +1,6 @@
 package com.example.pdamanager.Repositories;
 
-import com.example.pdamanager.Entities.Demande;
 import com.example.pdamanager.Entities.Exercice;
-import com.example.pdamanager.Entities.Participant;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -10,16 +8,14 @@ import jakarta.persistence.Query;
 
 import java.util.List;
 
-public class DemandeRepoditoryImpl {
+public class ExerciceRepositoryImpl {
     EntityManager entityManager;
-    public List<Demande> findDemandeByIdRespo(Long idResponsable){
+    public List<Exercice> findExrciceByActivite(Long idActivite){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("select d from Demande d where d.responsable.id = :resp");
-        query.setParameter("resp",idResponsable);
-        return query.getResultList();
+        Query query = entityManager.createQuery("select a.exerciceList from Activité a where a.id = :idActivite");
+        query.setParameter("idActivite",idActivite);
+       return query.getResultList();
     }
-
-
 }
