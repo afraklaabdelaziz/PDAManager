@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/profile"})
+@WebServlet(name = "ActiveteServlet", urlPatterns = {"/listActivetes" ,"/updateActivete","/profile","/participantList"})
 public class ActiveteServlet extends HttpServlet {
 
     TypeActivité typeActivité;
@@ -23,6 +23,7 @@ public class ActiveteServlet extends HttpServlet {
     InterfaceService paysService = new PaysServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
     InterfaceService exrciceService = new ExerciceServiceImpl();
+    ParticipantServiceImpl participantService = new ParticipantServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String path = request.getServletPath();
@@ -72,6 +73,8 @@ public class ActiveteServlet extends HttpServlet {
         case ("/profile"):
             request.getRequestDispatcher("adminProfile.jsp").forward(request,response);
             break;
+        case ("/participantList") :
+            request.getRequestDispatcher("participantList").forward(request,response);
     }
 
     }
