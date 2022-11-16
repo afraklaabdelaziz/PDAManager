@@ -19,7 +19,7 @@
 
 
         <li class="list-group-item">
-            <a class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/listParticipant">
+            <a class="btn mt-2 text-light d-flex" href="/PDAManager_war_exploded/participantList">
                 <i class="fas fa-graduation-cap pe-3"></i>
                 <span class="fw-bold text-white name d-none d-md-inline">Participants</span>
             </a>

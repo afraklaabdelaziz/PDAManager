@@ -16,9 +16,9 @@
    <c:forEach items="${activetes}" var="activete">
     <div class="activite position-relative">
         <p class="h5 nameClass mt-2">Type activité : ${activete.getTypeActivité()}</p>
-        <p> <span class="fas fa-users"></span> Date : ${activete.getDate_debut()} </p>
-        <p> <span class="fas fa-users"></span> Date : ${activete.getDate_debut()} </p>
-        <p> <span class="fas fa-users"></span> Date : ${user.getNom()} </p>
+        <p> <span class="fas fa-users"></span> Date Debut : ${activete.getDate_debut()} </p>
+        <p> <span class="fas fa-users"></span> Date Fin : ${activete.getDate_fin()} </p>
+        <p> <span class="fas fa-users"></span>  Responsable : ${activete.getResponsable().getNom()} </p>
         <a href="/PDAManager_war_exploded/updateActivete?id=${activete.getId()}"><i class="fas fa-edit edite"></i></a>
     </div>
     </c:forEach>
