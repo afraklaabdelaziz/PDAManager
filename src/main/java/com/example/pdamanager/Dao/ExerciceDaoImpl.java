@@ -1,12 +1,10 @@
 package com.example.pdamanager.Dao;
-
 import com.example.pdamanager.Entities.Activité;
 import com.example.pdamanager.Entities.Exercice;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
-
 import java.util.List;
 
 public class ExerciceDaoImpl implements InterfaceDao<Exercice> {

@@ -1,6 +1,5 @@
 package com.example.pdamanager.Dao;
 import java.util.List;
-
 import com.example.pdamanager.Entities.Role;
 import com.example.pdamanager.Entities.User;
 import jakarta.persistence.*;
@@ -55,9 +54,7 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
             role = em.find(Role.class, id);
             em.getTransaction().commit();
         } catch (Exception ex) {
-
             em.getTransaction().rollback();
-
             ex.printStackTrace();
         }
         finally {
@@ -72,8 +69,7 @@ public class UseDaoImpl<T>  implements InterfaceDao <T> {
         em = emf.createEntityManager();
         em.getTransaction().begin();
         List<User> users = em.createQuery("select user from User user", User.class).getResultList();//.stream().map(u->u.getNom()).forEach(System.out::println);
-        users.stream().map(u -> u.getNom()).forEach(System.out::println);
-
+       // users.stream().map(u -> u.getNom()).forEach(System.out::println);
         em.getTransaction().commit();
         em.close();
         return (List<T>) users;
