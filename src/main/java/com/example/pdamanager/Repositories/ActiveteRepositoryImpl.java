@@ -20,9 +20,7 @@ public class ActiveteRepositoryImpl {
             activite = (Activité) query.getSingleResult();
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
-
             entityManager.getTransaction().rollback();
-
             ex.printStackTrace();
         }
         return activite;

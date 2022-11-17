@@ -1,17 +1,12 @@
 package com.example.pdamanager.Servlets;
-
-
 import com.example.pdamanager.Entities.*;
 import com.example.pdamanager.Services.*;
-
 import com.example.pdamanager.Entities.Participant;
 import com.example.pdamanager.Entities.Responsable;
 import com.example.pdamanager.Entities.User;
-
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
 import java.io.IOException;
 
 @WebServlet(name = "AuthServlet",urlPatterns ={"/login" ,"/register","/Choix","/logout"})
@@ -79,7 +74,6 @@ public class AuthServlet extends HttpServlet {
                     responsable.setPhone(Phone);
                     responsable.setPassword(Password);
                     responsable.setDomaine(domaine);
-
                     switch (typeRes){
                         case "Formatteur" :
                             responsable.setType(Type.Formatteur);
@@ -88,7 +82,6 @@ public class AuthServlet extends HttpServlet {
                             responsable.setType(Type.Interveneur);
                             break;
                     }
-
                     addres.setAdresse(adresse);
                     payss.setNom(pays);
                     ville.setNom(Ville);
