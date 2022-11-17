@@ -12,14 +12,17 @@ import java.util.List;
 @WebServlet(name = "ParticipantServlet", urlPatterns = {"/dashboard","/updateProfile"})
 public class ParticipantServlet extends HttpServlet {
     InterfaceService activeteService = new ActiveteServiceImpl();
-    InterfaceService demandeService = new DemandeServiceImpl();
+    DemandeServiceImpl demandeService = new DemandeServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
     InterfaceService participantService=new ParticipationServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      String path = request.getServletPath();
+     HttpSession session = request.getSession();
      switch (path){
          case ("/dashboard") :
+            List<Demande> demandeList =  demandeService.findDemandeByIdRespoPartici(2L,1L);
+            request.setAttribute("demandes",demandeList);
              List<Activité> activites = activeteService.getAll();
              request.setAttribute("activetes",activites);
              request.getRequestDispatcher("dashboard.jsp").forward(request,response);

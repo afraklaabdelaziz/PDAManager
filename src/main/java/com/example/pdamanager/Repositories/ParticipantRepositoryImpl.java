@@ -15,7 +15,7 @@ public class ParticipantRepositoryImpl {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
         entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("select p from Participant p , Participation pa ,Activité a where pa.participant.id = p.id and pa.activite.id = a.id and a.id = :activ");
+        Query query = entityManager.createQuery("select p from Participant p , Participation pa ,Activité a where pa.participant.id = p.id and pa.activite.id = :activ");
         query.setParameter("activ",idActivite);
         return query.getResultList();
     }
