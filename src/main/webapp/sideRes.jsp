@@ -3,7 +3,7 @@
     <div class="text-center">
         <p class="fw-bold h5 mt-2 name d-md-inline d-none">PDAManager</p>
         <div class="d-flex flex-column align-items-center mt-5">
-            <img src='<c:url value="/Asets/Images/abdelaziz.jpg"></c:url>' />
+            <img src='<c:url value="/Asets/Images/raouya.jpg"></c:url>' />
             <span class="text-info name d-none d-md-inline  name">Responsable</span>
         </div>
     </div>

@@ -30,11 +30,11 @@
     <div class="d-flex flex-wrap gap-5">
         <c:forEach items="${exercices}" var="exercice">
             <div class="activite position-relative">
-                <p class="h5 nameClass mt-2">Type activité : ${exercice.getNom()}</p>
-                <p> <span class="fas fa-users"></span> Date : ${exercice.getDate_debut()} </p>
-                <p> <span class="fas fa-users"></span> Date : ${exercice.getDate_fin()} </p>
-                <p> <span class="fas fa-users"></span> Date : ${exercice.getAnnée()} </p>
-                <p> <span class="fas fa-users"></span> Date : ${exercice.getEtatExercice()} </p>
+                <p class="h5 nameClass mt-2">Nom Exrcice : ${exercice.getNom()}</p>
+                <p> <span class="fas fa-users"></span> Date Debut : ${exercice.getDate_debut()} </p>
+                <p> <span class="fas fa-users"></span> Date Fin : ${exercice.getDate_fin()} </p>
+                <p> <span class="fas fa-users"></span> Annee : ${exercice.getAnnée()} </p>
+                <p> <span class="fas fa-users"></span> Etat Exrcice : ${exercice.getEtatExercice()} </p>
                 <a href="/PDAManager_war_exploded/updateExercice?id=${exercice.getId()}"><i class="fas fa-edit edite"></i></a>
             </div>
         </c:forEach>
