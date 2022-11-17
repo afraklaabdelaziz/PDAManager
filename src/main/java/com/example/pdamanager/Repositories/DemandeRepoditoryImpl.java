@@ -21,5 +21,15 @@ public class DemandeRepoditoryImpl {
         return query.getResultList();
     }
 
+    public List<Demande> findDemandeByIdRespoPartici(Long idResponsable,Long idParticipant){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PDAManager");
+        entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("select d from Demande d where d.responsable.id = :resp AND d.participant.id = :partici");
+        query.setParameter("resp",idResponsable);
+        query.setParameter("partici",idParticipant);
+        return query.getResultList();
+    }
+
 
 }

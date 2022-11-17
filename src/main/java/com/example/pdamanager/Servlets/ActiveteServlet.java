@@ -80,9 +80,11 @@ public class ActiveteServlet extends HttpServlet {
             System.out.println(idActivite);
             if(idActivite != null ){
                 if (idActivite.equals("all")){
+                    System.out.println("222");
                     List<Participant> participants = participantService.findAllParticipant();
                     request.setAttribute("participantList",participants);
                 }else {
+                    System.out.println(333);
                     List<Participant> participantList = participantService.findParticipantByActivite(Long.parseLong(idActivite));
                     request.setAttribute("participantList",participantList);
                 }
