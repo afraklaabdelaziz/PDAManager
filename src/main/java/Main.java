@@ -39,17 +39,18 @@ public class Main {
         System.out.println("date from parametre "+dateFromPar);
         LocalDate dateDInsc = LocalDate.parse(dateFromPar);*/
 
-        Role role=new Role();
-        role.setNom("Admin");
-        Role role1=new Role();
-        role1.setNom("Responsable");
-        Role role2=new Role();
-        role2.setNom("participant");
-        entityManager.getTransaction().begin();
-        entityManager.persist(role);
-        entityManager.persist(role1);
-        entityManager.persist(role2);
-        entityManager.getTransaction().commit();
+//        Role role=new Role();
+//        role.setNom("Admin");
+//        Role role1=new Role();
+//        role1.setNom("Responsable");
+//        Role role2=new Role();
+//        role2.setNom("participant");
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(role);
+//        entityManager.getTransaction().commit();
+//        entityManager.persist(role1);
+//        entityManager.persist(role2);
+//        entityManager.getTransaction().commit();
 
 
 
