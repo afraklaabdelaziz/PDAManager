@@ -1,41 +1,37 @@
 package com.example.pdamanager.Services;
 
+import com.example.pdamanager.Dao.InterfaceDao;
 import com.example.pdamanager.Entities.Adresse;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
 class AdresseServiceImplTest {
-
+    @Mock
+    InterfaceDao addresDao;
+@InjectMocks
     AdresseServiceImpl adresseService = new AdresseServiceImpl();
 
     @Test
     void add() {
         Adresse adresse = new Adresse();
-        adresse.setId(1);
         adresse.setAdresse("Dr tafrgalt ");
         adresseService.Add(adresse);
-        assertInstanceOf(Adresse.class,adresse);
+      verify(addresDao).add(adresse);
     }
 
     @Test
     void update() {
-       Adresse adresse = (Adresse) adresseService.findByID(8L);
+       Adresse adresse = new Adresse();
         adresse.setAdresse("Dr tafrgalt mezguita ");
         adresseService.update(adresse);
-        assertInstanceOf(Adresse.class,adresse);
+        verify(addresDao).update(adresse);
     }
 
-    @Test
-    void getAll() {
-        assertInstanceOf(new ArrayList<Adresse>().getClass(),adresseService.getAll());
-    }
-
-    @Test
-    void findByID() {
-        assertInstanceOf(Adresse.class,adresseService.findByID(1L));
-    }
 
 }
