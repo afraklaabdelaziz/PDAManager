@@ -38,33 +38,5 @@ class ExerciceServiceImplTest {
         verify(ExerciceDaoImpl).add(exercice);
     }
 
-    @Test
-    void update() {
-        Exercice exercice = exerciceService.findByID(3L);
-        activité.setTitle("CCCCC");
-        activeteService.update(activité);
-        assertEquals("CCCCC",activité.getTitle());
-    }
-
-    @Test
-    void getAll() {
-
-        List<Activité> activites = new ArrayList<>();
-        Activité activite = new Activité();
-        activite.setTitle("ZZZ");
-
-        Activité activite1 = new Activité();
-        activite1.setTitle("ZZZ");
-
-        activites.add(activite);
-        activites.add(activite1);
-
-        doReturn(activites).when(activeteDao).getAll();
-        List<Activité> activites1 = activeteService.getAll();
-        assertThat(activites1).isNotEmpty();
-        verify(activeteDao,times(1)).getAll();
-        // assertTrue(activites.size() > 0);
-    }
-*/
-
+  
 }

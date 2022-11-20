@@ -1,14 +1,24 @@
 package com.example.pdamanager.Services;
 
+import com.example.pdamanager.Dao.InterfaceDao;
 import com.example.pdamanager.Entities.Ville;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.Extensions;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class VilleServiceImplTest {
-
+    @Mock
+    InterfaceDao villeDao;
+    @InjectMocks
     VilleServiceImpl villeService = new VilleServiceImpl();
 
     @Test
@@ -16,24 +26,16 @@ class VilleServiceImplTest {
         Ville ville = new Ville();
         ville.setNom("Zagora");
         villeService.Add(ville);
-        assertInstanceOf(Ville.class,ville);
+        verify(villeDao).add(ville);
     }
 
     @Test
     void update() {
-        Ville ville = villeService.findByID(3L);
+        Ville ville = new Ville();
         ville.setNom("Youssoufia");
         villeService.update(ville);
-        assertInstanceOf(Ville.class,ville);
+        verify(villeDao).update(ville);
     }
 
-    @Test
-    void getAll() {
-        assertInstanceOf(new ArrayList<Ville>().getClass(),villeService.getAll());
-    }
 
-    @Test
-    void findByID() {
-        assertInstanceOf(Ville.class,villeService.findByID(1L));
-    }
 }
