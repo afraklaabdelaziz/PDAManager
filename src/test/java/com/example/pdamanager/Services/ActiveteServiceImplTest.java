@@ -30,7 +30,6 @@ class ActiveteServiceImplTest {
 
  UserRepositoryImpl userRepository = new UserRepositoryImpl();
 
-
     @Test
     void add() {
   Activité activite = new Activité();

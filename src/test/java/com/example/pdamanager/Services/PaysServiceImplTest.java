@@ -9,9 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
@@ -30,19 +27,10 @@ class PaysServiceImplTest {
 
     @Test
     void update() {
-        Pays pays = paysService.findByID(3L);
+        Pays pays = new Pays();
         pays.setNom("France");
         paysService.update(pays);
-        assertInstanceOf(Pays.class,pays);
+        verify(paysDao).update(pays);
     }
 
-    @Test
-    void getAll() {
-        assertInstanceOf(new ArrayList<Pays>().getClass(),paysService.getAll());
-    }
-
-    @Test
-    void findByID() {
-        assertInstanceOf(Pays.class,paysService.findByID(1L));
-    }
 }
