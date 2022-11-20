@@ -5,14 +5,12 @@ import com.example.pdamanager.Dao.InterfaceDao;
 import com.example.pdamanager.Entities.Activité;
 
 import java.util.List;
-
 public class ActiveteServiceImpl implements InterfaceService<Activité>{
     InterfaceDao activeteDao = new ActiveteDaoImpl();
+
     @Override
     public void Add(Activité activité) {
-        System.out.println(3);
         activeteDao.add(activité);
-        System.out.println(4);
     }
 
     @Override
