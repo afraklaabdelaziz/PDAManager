@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JpaBuddyIdeaProjectConfig">
+  <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="h2">
+    <option name="sourceDiffType" value="DB" />
     <option name="defaultUnitInitialized" value="true" />
+    <option name="sourceDbValue" value="3589b51f-92b2-4895-9ee9-0f2d5c2ae46f" />
+    <option name="targetDbValue" value="3589b51f-92b2-4895-9ee9-0f2d5c2ae46f" />
+    <option name="snapshotDbValue" value="f30ad3ea-08b2-40f1-9f57-a5f56e4d5f94" />
   </component>
 </project>

@@ -17,10 +17,9 @@ public class Pays {
     public Pays() {
     }
 
-    public Pays(long id, String nom, List<Ville> villes) {
+    public Pays(long id, String nom) {
         this.id = id;
         this.nom = nom;
-        this.villes = villes;
     }
 
     public long getId() {

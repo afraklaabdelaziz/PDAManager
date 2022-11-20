@@ -15,21 +15,23 @@ class ExerciceServiceImplTest {
     @Test
     void add() {
         Exercice exercice = new Exercice();
-        exercice.setNom("ZZZ");
+        exercice.setNom("Exercice1");
         exerciceService.Add(exercice);
-        assertInstanceOf(Exercice.class,exercice);
+        Exercice exercice1= exerciceService.findByID(1);
+       assertEquals(1L,exercice1.getId());
     }
 
     @Test
     void update() {
         Exercice exercice = exerciceService.findByID(3L);
-        exercice.setNom("CCCZ");
+        exercice.setNom("ex2");
         exerciceService.update(exercice);
-        assertInstanceOf(Exercice.class,exercice);
+        assertEquals("ex2",exercice.getNom());
     }
 
     @Test
     void getAll() {
+
         assertInstanceOf(new ArrayList<Exercice>().getClass(),exerciceService.getAll());
     }
 
